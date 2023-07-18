@@ -1,7 +1,5 @@
 ## React-googleAuth
-### technology stack:
+### Plugin stack:
 - **Vite**
-- **React**
 - **Autoprefixer**
 - **SASS**
-- **Typescript**
