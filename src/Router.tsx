@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route}
 from 'react-router-dom';
 import MainLayout from './pages/MainLayout';
 import Home from './pages/home/Home';
-import Registration from './pages/registration/Google-singUp';
+import Registration from './pages/registration/Google-singUp'
 
 export default function AppRouter() {
   return (
