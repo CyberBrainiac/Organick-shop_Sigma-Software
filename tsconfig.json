@@ -31,5 +31,5 @@
   },
   // "include": ["src", "vite.config.ts", ".eslintrc.js"],
   "references": [{ "path": "./tsconfig.node.json" }],
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/@interfaces/**/*.ts"]
 }
+

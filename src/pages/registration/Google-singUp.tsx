@@ -1,12 +1,3 @@
-// import signupHandler from "@utils/auth/sign-up.js"
-// import signupHandler from "@utils/"
-// signupHandler({name: "Arseniy"});
-// const UserCredential = {
-//   username: 'exampleuser',
-//   password: 'examplepassword',
-//   email: 'user@example.com',
-// };
-
 export default function GoogleSignUp() {
 
   return (
@@ -15,7 +6,7 @@ export default function GoogleSignUp() {
           data-client_id="864090627228-2kqbbpejhd9bpe118jbfmh2id3hrrf2l.apps.googleusercontent.com"
           data-context="signup"
           data-ux_mode="popup"
-          data-callback="signupCallback"
+          data-callback="userSignupCredentialHandler"
           data-auto_prompt="false">
       </div>
 

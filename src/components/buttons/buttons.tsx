@@ -3,8 +3,8 @@ import "./buttons.scss";
 
 interface ButtonCommonProps {
   text: string;
-  className?: string | undefined;
-  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const ButtonCommon: React.FC<ButtonCommonProps> = ({text, className = "", onClick}) => {
@@ -15,6 +15,7 @@ const ButtonCommon: React.FC<ButtonCommonProps> = ({text, className = "", onClic
     >{text}</button>
   );
 }
+
 
 interface ButtonLinkProps {
   text: string;
