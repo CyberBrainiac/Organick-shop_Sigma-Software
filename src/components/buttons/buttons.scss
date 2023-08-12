@@ -1,42 +1,39 @@
-@import "/src/assets/global-styles/variable";
+@import "@/assets/styles/variables";
+@import "@/assets/styles/mixins";
 
-.common-button {
-  padding: 12px;
-  margin: 10px;
-  border-radius: 16px 8px;
-  border: 1px solid rgba(0, 0, 0, 0.9);
-  color: $text-color-main;
-  background-color: $page-bg-color-main;
+.button {
+	@include transition-main();
 
-  &:active {
-    border-width: 2px;
-    padding: 11px;
-  }
+	// &_common {
+	// 	padding: 10px;
+	// 	margin: 10px;
+	// 	border-radius: 16px 8px;
+	// 	border: 1px solid rgba(0, 0, 0, 0.9);
+	// 	color: $text-color-main;
+	// 	background-color: $page-bg-color-main;
 
-  &:hover {
-    box-shadow: 2px 4px 4px 0px rgba(93, 149, 238, 0.2);
-    text-decoration: underline;
-  }
-}
+	// 	&:active {
+	// 		border-width: 2px;
+	// 		padding: 11px;
+	// 	}
 
-.link-button {
-  display: block;
-  width: 130px;
-  text-align: center;
-  padding: 12px;
-  margin: 10px;
-  border-radius: 16px 8px;
-  border: 1px solid rgba(0, 0, 0, 0.9);
-  color: $text-color-main;
-  background-color: $page-bg-color-main;
+	// 	&:hover {
+	// 		box-shadow: 2px 4px 4px 0px rgba(93, 149, 238, 0.2);
+	// 		text-decoration: underline;
+	// 	}
+	// }
 
-  &:active {
-    border-width: 2px;
-    padding: 11px;
-  }
+	&:active {
 
-  &:hover {
-    box-shadow: 2px 4px 4px 0px rgba(93, 149, 238, 0.2);
-    text-decoration: underline;
-  }
+	}
+
+	&:hover {
+		background-color: $highlight-additional;
+	}
+
+	&_nav {
+		@include bold-text(20px);
+		display: block;
+		text-align: center;
+	}
 }

@@ -1,4 +1,4 @@
-import parseJwt from "@/utils/parseJwt"
+// import parseJwt from "@/utils/parseJwt"
 
 globalThis.userSignupCredentialHandler = (response) => {
   const responsePayload = parseJwt(response.credential);

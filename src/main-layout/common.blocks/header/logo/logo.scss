@@ -1,0 +1,16 @@
+@import "@/assets/styles/mixins.scss";
+
+.logo {
+	@include flex-row();
+	column-gap: 8.21px;
+	height: 53.716px;
+
+	&__img {
+		width: 36.582px;
+		height: 53.716px;
+	}
+
+	&__name {
+		width: 154px;
+	}
+}

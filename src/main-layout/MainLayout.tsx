@@ -1,13 +1,14 @@
 import "./mainLayout.scss"
-import "@/utils/auth/sign-up"
 import { Outlet } from "react-router-dom"
-import Header from "./common.block/header/Header";
+import Header from "./common.blocks/header/Header"
+import Footer from "./common.blocks/footer/Footer"
 
 export default function MainLayout() {
   return(
-    <section className="mainLayout">
+    <section className="layout">
       <Header />
       <Outlet /> 
+			<Footer />
     </section>
   );
 }

@@ -1,0 +1,32 @@
+@use "sass:math";
+
+@function px2vw($target) { 
+  /*CHANGE VIEWPORT VALUE IF YOUR RESOLUTION IS DIFFERENT*/
+  $my-viewPort-width: 1920px;
+  $metric: 'vw';
+
+  @if unitless($target) {
+    @warn "Value has no unit: '#{$target}', value convert into pixels.";
+    @return px2vw($target * 1px);
+  } @else if unit($target) == vw {
+    @return $target;
+  }
+
+  $res: #{math.div($target, $my-viewPort-width) * 100 + $metric};
+  @return $res;
+}
+
+@function px2vh($target) {
+  $my-viewPort-height: 937px;
+  $metric: 'vh';
+
+  @if unitless($target) {
+    @warn "Value has no unit: '#{$target}', value convert into pixels.";
+    @return px2vw($target * 1px);
+  } @else if unit($target) == vh {
+    @return $target;
+  }
+
+  $res: #{math.div($target, $my-viewPort-height) * 100 + $metric};
+  @return $res;
+}

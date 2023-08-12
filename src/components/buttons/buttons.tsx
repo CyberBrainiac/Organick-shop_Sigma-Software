@@ -6,28 +6,26 @@ interface ButtonCommonProps {
   className?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
+interface ButtonNavProps {
+  text: string;
+  className?: string;
+  href: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+}
 
 const ButtonCommon: React.FC<ButtonCommonProps> = ({text, className = "", onClick}) => {
   return (
     <button 
-      className={`${className} common-button`} 
+      className={`${className} button_common`} 
       onClick={onClick} 
     >{text}</button>
   );
 }
 
-
-interface ButtonLinkProps {
-  text: string;
-  className?: string | undefined;
-  href: string;
-  onClick?: React.MouseEventHandler<HTMLAnchorElement> | undefined;
-}
-
-const ButtonLink: React.FC<ButtonLinkProps> = ({href, text, className = "", onClick}) => {
+const ButtonNav: React.FC<ButtonNavProps> = ({href, text, className = "", onClick}) => {
   return (
     <a href={href}
-    className={`${className} link-button`} 
+    className={`${className} button_nav`} 
     onClick={onClick} 
     >{text}</a>
   );
@@ -35,5 +33,5 @@ const ButtonLink: React.FC<ButtonLinkProps> = ({href, text, className = "", onCl
 
 export {
   ButtonCommon,
-  ButtonLink,
+  ButtonNav,
 }
