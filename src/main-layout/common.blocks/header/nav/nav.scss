@@ -1,0 +1,7 @@
+@import "@/assets/styles/functions";
+@import "@/assets/styles/mixins";
+
+.nav {
+	@include flex-row();
+	width: px2vw(600px);
+}

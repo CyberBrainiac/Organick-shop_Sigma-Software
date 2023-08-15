@@ -1,6 +1,12 @@
-@import "@/assets/styles/variables";
 @import "@/assets/styles/mixins";
+@import "@/assets/styles/functions";
 
 .header {
-	display: flex;
+	@include flex-row();
+	padding: 69px px2vw(162px);
+
+	&_search-cart-wrap {
+		display: flex;
+		column-gap: 18px;
+	}
 }

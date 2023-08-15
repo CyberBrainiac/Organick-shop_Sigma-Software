@@ -2,13 +2,18 @@ import "./mainLayout.scss"
 import { Outlet } from "react-router-dom"
 import Header from "./common.blocks/header/Header"
 import Footer from "./common.blocks/footer/Footer"
+import { CounterProvider } from "@/components/contexts/CounterProvider"
 
-export default function MainLayout() {
+function MainLayout() {
   return(
-    <section className="layout">
-      <Header />
-      <Outlet /> 
-			<Footer />
-    </section>
+		<CounterProvider>
+			<section className="main-layout">
+				<Header />
+				<Outlet /> 
+				<Footer />
+			</section>
+		</CounterProvider>
   );
 }
+
+export default MainLayout;

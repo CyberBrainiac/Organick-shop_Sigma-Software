@@ -1,0 +1,25 @@
+@import "/src/assets/styles/mixins.scss";
+@import "/src/assets/styles/functions";
+
+.cart {
+	@include flex-row();
+	width: 159px;
+	height: 66px;
+	border-radius: 33px;
+	border: 1px solid #E0E0E0;
+	text-align: center;
+
+	&__btn {
+		@include backgr-img("@/assets/images/Cart-Icon.svg");
+		width: 56px;
+		height: 56px;
+		margin-right: 12px;
+		margin-left: 6px;
+		border-color: transparent;
+	}
+
+	&__name {
+		@include bold-text(18px);
+		margin-right: 20px;
+	}
+}

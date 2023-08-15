@@ -1,8 +1,9 @@
 @use "sass:math";
 
 @function px2vw($target) { 
-  /*CHANGE VIEWPORT VALUE IF YOUR RESOLUTION IS DIFFERENT*/
+  /*CHANGE VIEWPORT VALUE IF YOUR FIGMA MAKET RESOLUTION IS DIFFERENT*/
   $my-viewPort-width: 1920px;
+	// $my-viewPort-width: 2560px;
   $metric: 'vw';
 
   @if unitless($target) {
