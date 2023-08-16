@@ -1,0 +1,95 @@
+@import "/src/assets/styles/variables";
+@import "/src/assets/styles/mixins";
+@import "/src/assets/styles/functions";
+
+.hero {
+	height: 898px;
+	position: relative;
+	background-color: #F1EFF0;
+
+	&__content {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		left: px2vw(260px);
+	}
+
+	&__tegline {
+		@include highlight-text();
+	}
+
+	&__btn {
+		width: 220px;
+		margin-top: 24px;
+		background-color: $highlight-additional;
+	}
+
+	&__background {
+		&_main-bg {
+			@include backgr-img("/src/assets/images/Hero-Main-BG.png");
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+		&_garlic {
+			@include backgr-img("/src/assets/images/Garlic-Hero-BG.svg");
+			position: absolute;
+			top: 6%;
+			left: 2%;
+			width: 188.008px;
+			height: 172.497px;
+			transform: rotate(133.191deg);
+		}
+		&_half-of-leaf {
+			@include backgr-img("/src/assets/images/Half-Of-Leaf-Hero-BG.svg");
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 140px;
+			height: 250px;
+		}
+		&_nut {
+			@include backgr-img("/src/assets/images/Nut-Hero-BG.svg");
+			position: absolute;
+			top: 3%;
+			right: 9%;
+			width: 121.391px;
+			height: 88.151px;
+			transform: rotate(-150deg);
+		}
+		&_oak-leaf {
+			@include backgr-img("/src/assets/images/Oak-Leaf-Hero-BG.svg");
+			position: absolute;
+			bottom: 0;
+			right: 1%;
+			width: 180px;
+			height: 290px;
+		}
+		&_small-leaf {
+			@include backgr-img("/src/assets/images/Small-Leaf-Hero-BG.svg");
+			position: absolute;
+			top: 23%;
+			left: 13%;
+			width: 68.865px;
+			height: 77.286px;
+			transform: rotate(133.191deg);
+		}
+		&_strawberry {
+			@include backgr-img("/src/assets/images/Strawberry-Hero-BG.svg");
+			position: absolute;
+			top: 7%;
+			left: 45%;
+			width: 128.023px;
+			height: 139.011px;
+			transform: rotate(65.915deg);
+		}
+		&_two-leafs {
+			@include backgr-img("/src/assets/images/Two-Leafs-Hero-BG.svg");
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 240px;
+			height: 290px;
+		}
+	}
+}

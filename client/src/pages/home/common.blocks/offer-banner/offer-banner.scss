@@ -1,0 +1,44 @@
+@import "/src/assets/styles/functions";
+@import "/src/assets/styles/variables";
+@import "/src/assets/styles/mixins";
+
+.offer-banner {
+	@include flex-row();
+	justify-content: center;
+	column-gap: 36px;
+	padding-top: 154px;
+	padding-bottom: 190px;
+
+	&__container {
+		display: flex;
+		align-items: center;
+		width: px2vw(680px);
+		height: 362px;
+		padding-left: px2vw(60px);
+		border-radius: 30px;
+
+		&_background {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+		}
+	}
+
+	&__tegline {
+		@include highlight-text();
+	}
+}
+
+#offer-banner__container-1 {
+	@include backgr-img("/src/assets/images/Offer-Banner-Fruits.jpg");
+	
+	p, h3 {
+		color: $page-bg-color-main;
+	}
+}
+
+#offer-banner__container-2 {
+	@include backgr-img("/src/assets/images/Offer-Banner-Vegetables.png");
+}

@@ -1,0 +1,41 @@
+@import "@/assets/styles/variables";
+@import "@/assets/styles/mixins";
+
+.button {
+	@include transition-main();
+
+	&_common {
+		border-radius: 50%;
+		text-transform: capitalize;
+	}
+
+	&_nav {
+		@include bold-text(20px);
+		display: block;
+		text-align: center;
+	}
+
+	&_link {
+		padding: 28px 47px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-transform: capitalize;
+		border-radius: 16px;
+
+		&-arrow {
+			@include backgr-img("/src/assets/images/Button-Link-Arrow.svg");
+			width: 19px;
+			height: 19px;
+			margin-left: 10px;
+		}
+	}
+
+	&:active {
+		border: 1px solid #aaa;
+	}
+
+	&:hover {
+		background-color: $highlight-additional;
+	}
+}

@@ -1,0 +1,58 @@
+@import "./variables";
+
+/*Headings and Text*/
+@mixin headings($font-size) {
+	color: $highlight-main;
+	font-family: $Roboto;
+	font-size: $font-size;
+	font-style: normal;
+	font-weight: 800;
+	line-height: normal;
+}
+
+@mixin bold-text($font-size) {
+	@include headings($font-size);
+	font-size: $font-size;
+	font-weight: 700;
+}
+
+@mixin highlight-text() {
+	color: $text-color-highlight;
+	font-family: $Yellowtail;
+	font-size: 36px;
+	font-style: normal;
+	text-transform: capitalize;
+	font-weight: 400;
+	line-height: normal;
+}
+
+@mixin common-text() {
+	color: $text-color-main;
+	font-family: $Open-Sanss;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 165.4%;
+}
+
+/*Images*/
+@mixin backgr-img($url) {
+	background-image: url($url);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	max-width: 100%;
+}
+
+/*Flex box*/
+@mixin flex-row() {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+/*Transition*/
+@mixin transition-main() {
+	transition: all $trans-default-time;
+}
