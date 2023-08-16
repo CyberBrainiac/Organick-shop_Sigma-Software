@@ -26,6 +26,8 @@
 		}
 	}
 
+	&__content { width: 260px; }
+
 	&__tegline {
 		@include highlight-text();
 	}

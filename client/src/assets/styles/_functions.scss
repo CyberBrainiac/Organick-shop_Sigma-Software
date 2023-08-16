@@ -18,6 +18,7 @@
 }
 
 @function px2vh($target) {
+	/*CHANGE VIEWPORT VALUE IF YOUR FIGMA MAKET RESOLUTION IS DIFFERENT*/
   $my-viewPort-height: 937px;
   $metric: 'vh';
 

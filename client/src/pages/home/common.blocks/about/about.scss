@@ -1,0 +1,79 @@
+@import "/src/assets/styles/variables";
+@import "/src/assets/styles/functions";
+@import "/src/assets/styles/mixins";
+
+.about {
+	@include flex-row();
+	column-gap: px2vw(20px);
+	justify-content: center;
+	background-color: $page-bg-color-additional;
+	padding: 87px px2vw(272px) 113px px2vw(100px);
+
+	&__img {
+		@include backgr-img("/src/assets/images/About-Photo.png");
+		width: px2vw(911px);
+		height: px2vw(867px);
+	}
+
+	&__content {
+		width: px2vw(690px);
+	}
+
+	&__tegline {
+		@include highlight-text();
+	}
+
+	&__description {
+		@include common-text();
+		margin-top: 6px;
+	}
+
+	&__wrap {
+		display: grid;
+		grid-template-columns: 18% 82%;
+		grid-template-rows: 1fr 1fr;
+		row-gap: 7px;
+		column-gap: 19px;
+		width: px2vw(560px);
+		margin: 56px 0;
+	}
+
+	&__detail-img {
+		@include backgr-img("/src/assets/images/About-Ellipse.svg");
+		background-size: auto;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+		width: px2vw(101px);
+		height: px2vw(101px);
+		background-color: $page-bg-color-main;
+		border-radius: 20px;
+	}
+
+	&__btn {
+		width: 220px;
+		padding: 28px 39px;
+		background-color: $highlight-main;
+		color: $page-bg-color-main;
+	}
+}
+#about__detail-img-1{
+	background-position: 25% 50%;
+
+	&:before {
+		@include pseudo-elem-img("/src/assets/images/About-Vegan-Food.svg");
+		background-position: -7px -0.5px;
+		width: 46px;
+		height: 46px;
+	}
+}
+
+#about__detail-img-2 {
+	background-position: 25% 60%;
+
+	&:before {
+		@include pseudo-elem-img("/src/assets/images/About-Mailbox-Quality.svg");
+		width: 52px;
+		height: 52px;
+	}
+}
