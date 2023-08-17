@@ -12,7 +12,6 @@
 
 @mixin bold-text($font-size) {
 	@include headings($font-size);
-	font-size: $font-size;
 	font-weight: 700;
 }
 
@@ -42,6 +41,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	max-width: 100%;
+	max-height: 100%;
 }
 
 /*Pseudo element*/
@@ -70,6 +70,13 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+}
+
+@mixin flex-column() {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 /*Transition*/

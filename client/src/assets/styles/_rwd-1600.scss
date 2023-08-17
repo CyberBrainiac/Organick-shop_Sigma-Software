@@ -1,0 +1,23 @@
+@media screen and (max-width: 1599.5px) {
+
+	div.main-errorPage {
+		&_decore-nut {
+			top:10%;
+			left: 60%;
+		}
+		&_decore-small-leaf {
+			top: 6%;
+			left: 32%;
+		}
+		&_decore-strange-leaf {
+			top: 28%;
+			left: initial;
+			right: 5%;
+		}
+		&_decore-onion {
+			top: 70%;
+			left: initial;
+			right: 10%;
+		}
+	}
+}

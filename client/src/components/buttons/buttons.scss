@@ -5,14 +5,9 @@
 	@include transition-main();
 
 	&_common {
-		border-radius: 50%;
-		text-transform: capitalize;
-	}
-
-	&_nav {
 		@include bold-text(20px);
-		display: block;
-		text-align: center;
+		border: none;
+		text-transform: capitalize;
 	}
 
 	&_link {
@@ -20,7 +15,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		text-transform: capitalize;
 		border-radius: 16px;
 		padding: 28px 47px;
 

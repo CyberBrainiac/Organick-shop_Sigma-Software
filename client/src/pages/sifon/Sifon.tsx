@@ -1,7 +1,7 @@
 function Sifon() {
 	return(
-		<div>
-			<p>This is SIFON page</p>
+		<div style={{textAlign: 'center'}}>
+			<h1>This is SIFON page</h1>
 		</div>
 	)
 }

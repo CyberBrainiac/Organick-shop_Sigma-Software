@@ -1,0 +1,67 @@
+@import "src/assets/styles/mixins";
+@import "src/assets/styles/variables";
+
+.main-errorPage {
+	@include backgr-img("/src/assets/images/Herbarium.png");
+	position: relative;
+	width: 100%;
+	height: 898px;
+	background-color: #E3F1E9;
+
+	&__content {
+		@include flex-column();
+		position: absolute;
+		top: 50%;
+		right: 16%;
+		transform: translateY(-50%);
+		width: 533px;
+	}
+
+	&__description {
+		@include common-text();
+		font-weight: 600;
+		margin-top: 9px;
+		margin-bottom: 36px;
+	}
+
+	&__btn {
+		align-self: flex-start;
+		width: 274px;
+		background-color: $highlight-main;
+		color: $page-bg-color-main;
+	}
+
+	&_decore-nut {
+		@include backgr-img("/src/assets/images/Nut-Dark-BG.svg");
+		position: absolute;
+		top:39%;
+		left: 44%;
+		width: 93.229px;
+		height: 67.699px;
+		transform: rotate(-94.559deg);
+	}
+	&_decore-small-leaf {
+		@include backgr-img("/src/assets/images/Small-Leaf-White-BG.svg");
+		position: absolute;
+		top: 13%;
+		left: 32%;
+		width: 70.814px;
+		height: 79.474px;
+	}
+	&_decore-strange-leaf {
+		@include backgr-img("/src/assets/images/Strange-Leaf-BG.svg");
+		position: absolute;
+		top: 28%;
+		left: 14%;
+		width: 64.845px;
+		height: 90.914px;
+	}
+	&_decore-onion {
+		@include backgr-img("/src/assets/images/Onion-BG.svg");
+		position: absolute;
+		top: 70%;
+		left: 16%;
+		width: 90.804px;
+		height: 83.312px;
+	}
+}

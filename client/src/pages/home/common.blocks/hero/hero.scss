@@ -34,7 +34,7 @@
 			height: 100%;
 		}
 		&_garlic {
-			@include backgr-img("/src/assets/images/Garlic-Hero-BG.svg");
+			@include backgr-img("/src/assets/images/Garlic-BG.svg");
 			position: absolute;
 			top: 6%;
 			left: 2%;
@@ -51,7 +51,7 @@
 			height: 250px;
 		}
 		&_nut {
-			@include backgr-img("/src/assets/images/Nut-Hero-BG.svg");
+			@include backgr-img("/src/assets/images/Nut-BG.svg");
 			position: absolute;
 			top: 3%;
 			right: 9%;

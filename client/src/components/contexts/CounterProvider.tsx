@@ -14,7 +14,7 @@ function CounterProvider({children} : CountProviderType) {
 	function decProdVal() {
 		const newVal = countProd - 1;
 
-		if(newVal === -1) {
+		if(newVal > 0) {
 			throw new Error("Prodact count in cart can`t be less then 0");
 		}
 
