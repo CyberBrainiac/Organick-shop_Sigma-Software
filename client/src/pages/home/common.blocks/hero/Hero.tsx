@@ -17,7 +17,7 @@ function Hero() {
 			<div className="hero__content">
 				<p className="hero__tegline">100% natural food</p>
 				<h1>Choose the best<br/>healthier way<br/>of life</h1>
-				<ButtonLink className="hero__btn" text="explore now" href="#" />
+				<ButtonLink className="hero__btn" text="Explore Now" href="#" />
 			</div>
 		</div>
 	);

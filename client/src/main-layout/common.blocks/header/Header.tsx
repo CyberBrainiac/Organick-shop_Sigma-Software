@@ -1,5 +1,5 @@
 import Cart from "./cart/Cart"
-import Logo from "./logo/Logo"
+import Logo from "@/components/logo/Logo"
 import Nav from "./nav/Nav"
 import Search from "./search/Search"
 import "./header.scss"

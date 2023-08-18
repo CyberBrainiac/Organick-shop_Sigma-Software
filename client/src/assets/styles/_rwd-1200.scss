@@ -1,6 +1,39 @@
+@import "./mixins";
+
 @media screen and (max-width: 1199.5px) {
 
 	div.main-errorPage {
 		background-position-x: 70%;
+	}
+
+	footer.footer { padding-top: 60px; }
+
+	div.footer {
+		&__wrap {
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr 1fr 1fr;
+		}
+
+		&__block {
+			text-align: center;
+			padding: initial;
+	
+			&_contact {
+				border-right: none;
+			}
+	
+			&_socials {
+				@include flex-column
+			}
+	
+			&_utility {
+				@include flex-column();
+				border-left: none;
+			}
+		}
+
+		&__copyright {
+			margin-top: 20px;
+		}
 	}
 }

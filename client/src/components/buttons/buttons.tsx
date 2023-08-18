@@ -3,18 +3,23 @@ import "./buttons.scss"
 import { ButtonCommonType, ButtonLinkType } from "@/types/main-layout-types" 
 import { Link } from "react-router-dom";
 
-const ButtonCommon: React.FC<ButtonCommonType> = ({text, className = "", onClick}) => {
+const ButtonCommon: React.FC<ButtonCommonType> = ({href = "#", target, text, className = "", id, onClick}) => {
   return (
-    <button 
+    <Link to={href}
+      id={id}
       className={`${className} button_common`} 
-      onClick={onClick} 
-    >{text}</button>
+      onClick={onClick}
+      target={target}
+    >
+      {text}
+    </Link>
   );
 }
 
-const ButtonLink: React.FC<ButtonLinkType> = ({href, text, className = "", onClick}) => {
+const ButtonLink: React.FC<ButtonLinkType> = ({href, text, className = "", id = "null", onClick}) => {
   return (
     <Link to={href}
+    id={id}
     className={`${className} button_link`} 
     onClick={onClick} 
     >

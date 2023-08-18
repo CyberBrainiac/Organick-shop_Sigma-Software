@@ -23,7 +23,7 @@ function About() {{
 						<p className="about__description">Simply dummy text of the printing and typesetting industry. Lorem Ipsum</p>
 					</div>
 				</div>
-				<ButtonLink className="about__btn" text="shop now" href="#" />
+				<ButtonLink className="about__btn" text="Shop Now" href="#" />
 			</div>
 		</div>
 	);

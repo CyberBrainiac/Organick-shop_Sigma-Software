@@ -2,6 +2,7 @@
 
 .logo {
 	@include flex-row();
+	justify-content: center;
 	column-gap: 8.21px;
 	height: 53.716px;
 

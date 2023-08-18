@@ -1,9 +1,109 @@
-.footer {
-	width: 100%;
+@import "/src/assets/styles/mixins";
+@import "/src/assets/styles/variables";
+@import "/src/assets/styles/functions";
 
- &__wrap {
-	width: 100%;
-	height: 2px;
-	background-color: #232323;
- }
+.footer {
+	@include common-text();
+	padding-top: 124px;
+
+	&__wrap {
+		display: grid;
+		grid-template-columns: 1fr 1.6fr 1fr;
+		grid-template-rows: 1fr;
+		padding: 0 px2vw($page-bg-side-padding);
+	}
+
+	&__block {
+		&_contact {
+			text-align: right;
+			padding-right: px2vw(51px);
+			border-right: 1px solid $border-color-main;
+		}
+
+		&_socials {
+			@include flex-column();
+			text-align: center;
+			padding: 0 px2vw(42px);
+
+			& > p:first-of-type {
+				margin-top: 20px;
+			}
+		}
+
+		&_utility {
+			text-align: left;
+			padding-left: px2vw(51px);
+			border-left: 1px solid $border-color-main;
+
+			h5 {
+				padding-bottom: 12px;
+			}
+
+			p {
+				width: 180px;
+				margin-top: 16px;
+				padding: 3px 8px 3px 0;
+				border-radius: 0 20px 20px 0;
+				transition: $trans-button-time;
+
+				&:hover {
+					background-color: #EFF6F1;
+				}
+			}
+		}
+	}
+
+	&__link-wrap {
+		margin-top: 20px;
+	
+		& > :last-child {
+			display: inline-block;
+			padding: 3px 0 3px 8px;
+			border-radius: 20px 0 0 20px;
+			transition: $trans-button-time;
+			
+			&:hover {
+				background-color: #EFF6F1;
+			}
+		}
+	}
+
+	&__socials-wrap {
+		@include flex-row();
+		width: 285px;
+		display: flex;
+		margin-top: 49px;
+	}
+
+	&__link-btn {
+		position: relative;
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		background-color: #EFF6F1;
+	}
+
+	&__copyright {
+		text-align: center;
+		margin-top: 102px;
+		padding: 17px 0;
+		border-top: 1px solid $border-color-main;
+	}
+	
+	&_bold-text {
+		font-weight: 700;
+	}
+}
+
+#footer-instagram::after {
+	@include pseudo-elem-img("/src/assets/images/Instagram-Icon.svg");
+}
+#footer-facebook::after {
+	@include pseudo-elem-img("/src/assets/images/Facebook-Icon.svg");
+}
+#footer-twitter::after {
+	@include pseudo-elem-img("/src/assets/images/Twitter-Icon.svg");
+}
+#footer-pinterest::after {
+	@include pseudo-elem-img("/src/assets/images/Pinterest-Icon.svg");
 }

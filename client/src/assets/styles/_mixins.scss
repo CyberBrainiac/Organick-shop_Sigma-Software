@@ -25,12 +25,12 @@
 	line-height: normal;
 }
 
-@mixin common-text() {
+@mixin common-text($font-weight: 400) {
 	color: $text-color-main;
 	font-family: $Open-Sans;
 	font-size: 18px;
 	font-style: normal;
-	font-weight: 400;
+	font-weight: $font-weight;
 	line-height: 165.4%;
 }
 
@@ -54,8 +54,8 @@
 
 @mixin pseudo-elem-img($url) {
   @include pseudo-elem();
-	width: 100px;
-	height: 100px;
+	width: 100%;
+	height: 100%;
   background-image: url($url);
   background-size: cover;
 	background-repeat: no-repeat;
