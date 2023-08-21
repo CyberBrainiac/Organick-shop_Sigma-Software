@@ -3,9 +3,10 @@ import './assets/styles/global.scss'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements}
+import { RouterProvider, createBrowserRouter }
 from 'react-router-dom'
-import MainLayout from './main-layout/MainLayout'
+import MainLayout from './main-layout/MainLayout' 
+import { productsLoader as homeLoader } from '@/utils/loaders/productsLoader'
 import Home from './pages/home/Home'
 import Sifon from './pages/sifon/Sifon'
 import MainLayout_ErrorPage from './pages/errorPages/MainLayout_ErrorPage'
@@ -14,8 +15,13 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
+    errorElement: <MainLayout_ErrorPage />,
     children: [
-      { index: true, element: <Home /> },
+      { 
+        index: true,
+        element: <Home />,
+        loader: homeLoader,
+      },
       {
         path: 'sifon',
         element: <Sifon />,

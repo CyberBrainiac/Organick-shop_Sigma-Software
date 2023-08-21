@@ -1,0 +1,47 @@
+# Node.js
+node_modules/
+npm-debug.log*
+.pnp/
+.pnp.js
+
+# TypeScript
+*.tsbuildinfo
+
+# Build output
+dist/
+build/
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Testing frameworks
+__tests__/
+
+# Dependencies
+package-lock.json
+pnpm-lock.yaml
+
+# IDE-specific files
+*.iml
+.vscode/
+.idea/
+*.sublime-*
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+# Compiled binary addons
+build/Release
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Misc
+*.bak
+*.tmp

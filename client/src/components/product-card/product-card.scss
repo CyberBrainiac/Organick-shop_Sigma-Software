@@ -1,0 +1,63 @@
+@import "/src/assets/styles/mixins";
+@import "/src/assets/styles/variables";
+
+.product-card {
+  width: 320px;
+  border-radius: 30px;
+  background-color: #F9F8F8;
+
+  &__categories-wrap {
+    @include flex-row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    column-gap: 6px;
+    row-gap: 6px;
+    padding-left: $product-card-padding;
+    padding-right: $product-card-padding;
+    padding-top: $product-card-padding;
+  }
+
+  &__img-wrap {
+    width: 320px;
+    background-color: #F9F8F8;
+
+    img {
+      @include common-img();
+      mix-blend-mode: multiply;
+    }
+  }
+
+  &__category {
+    @include common-text(600);
+    font-size: 15px;
+    text-align: center;
+    line-height: normal;
+    color: $page-bg-color-main;
+    display: inline-block;
+    padding: 5px 12px;
+    background-color: $highlight-main;
+    text-transform: capitalize;
+    border-radius: 8px;
+  }
+
+  &__description {
+    padding: 0 $product-card-padding;
+
+    &_hr {
+      width: 100%;
+      border-top: 1px solid #DEDDDD;
+      margin-top: 13px;
+      margin-bottom: 6px;
+    }
+  }
+
+  &__name {
+    @include bold-text(20px, 600);
+    text-transform: capitalize;
+  }
+
+  &__price_cancel {
+    text-decoration: line-through;
+    color: red;
+  }
+}

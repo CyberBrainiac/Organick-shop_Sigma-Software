@@ -3,7 +3,7 @@ import "./buttons.scss"
 import { ButtonCommonType, ButtonLinkType } from "@/types/main-layout-types" 
 import { Link } from "react-router-dom";
 
-const ButtonCommon: React.FC<ButtonCommonType> = ({href = "#", target, text, className = "", id, onClick}) => {
+const ButtonCommon: React.FC<ButtonCommonType> = ({href = "#", target, text, className, id, onClick}) => {
   return (
     <Link to={href}
       id={id}
@@ -16,7 +16,7 @@ const ButtonCommon: React.FC<ButtonCommonType> = ({href = "#", target, text, cla
   );
 }
 
-const ButtonLink: React.FC<ButtonLinkType> = ({href, text, className = "", id = "null", onClick}) => {
+const ButtonLink: React.FC<ButtonLinkType> = ({href, text, className, id, onClick}) => {
   return (
     <Link to={href}
     id={id}

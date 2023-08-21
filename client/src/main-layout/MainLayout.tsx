@@ -9,7 +9,7 @@ function MainLayout() {
 		<CounterProvider>
 			<section className="main-layout">
 				<Header />
-				<Outlet /> 
+				<Outlet />
 				<Footer />
 			</section>
 		</CounterProvider>

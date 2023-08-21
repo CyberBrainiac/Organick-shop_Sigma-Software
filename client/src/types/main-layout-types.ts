@@ -27,3 +27,25 @@ export interface UseCountType {
 	incProdVal: MouseEventHandler<HTMLButtonElement>;
 	decProdVal: MouseEventHandler<HTMLButtonElement>;
 }
+
+export interface LoadMoreType {
+  (event: React.MouseEvent<HTMLAnchorElement>): void;
+}
+
+export interface ProductType {
+  id: number;
+  categories: string[];
+  imgUrl: string;
+  name: string;
+  price: number;
+  discount?: number;
+  stars: number;
+}
+
+export interface ProductCardProps {
+  product: ProductType;
+}
+
+export interface ProductsProps {
+  products: ProductType[];
+}

@@ -1,0 +1,29 @@
+@import '/src/assets/styles/variables';
+@import '/src/assets/styles/functions';
+@import '/src/assets/styles/mixins';
+
+.products {
+  @include flex-column();
+  padding: 176px px2vw($page-bg-side-padding);
+
+  &__heading {
+    margin-bottom: 40px;
+  }
+
+  &__tegline {
+    @include highlight-text();
+  }
+
+  &__wrap {
+    display: flex;
+    column-gap: 20px;
+    row-gap: 20px;
+  }
+
+  &__btn {
+    color: $page-bg-color-main;
+    background-color: #1E1E1E;
+    width: 220px;
+    margin-top: 122px;
+  }
+}
