@@ -1,7 +1,18 @@
 import React from "react"
 import "./buttons.scss"
-import { ButtonCommonType, ButtonLinkType } from "@/types/main-layout-types" 
+import { ButtonCommonType, ButtonLinkType, ButtonType } from "@/types/main-layout-types" 
 import { Link } from "react-router-dom";
+
+const Button: React.FC<ButtonType> = ({text, className, onClick}) => {
+  return(
+    <button
+      className={`${className} button`}
+      onClick={onClick}
+    >
+      <h6>{text}</h6>
+    </button>
+  );
+}
 
 const ButtonCommon: React.FC<ButtonCommonType> = ({href = "#", target, text, className, id, onClick}) => {
   return (
@@ -30,6 +41,7 @@ const ButtonLink: React.FC<ButtonLinkType> = ({href, text, className, id, onClic
 }
 
 export {
+  Button,
   ButtonCommon,
 	ButtonLink,
 }

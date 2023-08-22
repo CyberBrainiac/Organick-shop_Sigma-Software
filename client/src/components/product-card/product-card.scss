@@ -2,9 +2,22 @@
 @import "/src/assets/styles/variables";
 
 .product-card {
+  position: relative;
   width: 320px;
-  border-radius: 30px;
-  background-color: #F9F8F8;
+  cursor: pointer;
+
+  &__wrap {
+    position: relative;
+    top: 0;
+    left: 0;
+    border-radius: $card-border-rad;
+    background-color: #F9F8F8;
+    transition: $trans-card-time;
+
+    &_hover {
+      transform: translateY(-5px);
+    }
+  }
 
   &__categories-wrap {
     @include flex-row;
@@ -41,6 +54,7 @@
   }
 
   &__description {
+    position: relative;
     padding: 0 $product-card-padding;
 
     &_hr {
@@ -56,8 +70,46 @@
     text-transform: capitalize;
   }
 
+  &__price-wrap {
+    @include common-text(700);
+    color: $highlight-main;
+    display: inline-flex;
+    align-items: center;
+    column-gap: 8px;
+  }
+
   &__price_cancel {
+    @include common-text(600);
+    font-size: 15px;
     text-decoration: line-through;
-    color: red;
+    color: #B8B8B8;
+  }
+
+  &__stars {
+    @include flex-row;
+    display: inline-flex;
+    position: relative;
+    left: 100%;
+    transform: translateX(-170%);
+  }
+
+  &__substrate {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: $card-border-rad;
+    box-shadow: 0 0 3px 2px rgba(219, 220, 224);
+    background-color: rgba(219, 220, 224);
+    transition: 0.3s;
+
+    &_hover {
+      top: 10px;
+      left: 10px;
+      box-shadow: 0 0 3px 2px rgb(235, 236, 241);
+      background-color: rgb(235, 236, 241);
+    }
   }
 }

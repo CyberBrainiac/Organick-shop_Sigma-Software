@@ -4,6 +4,14 @@
 .button {
 	@include transition-main();
 
+	&:active {
+		border: 1px solid #aaa;
+	}
+
+	&:hover {
+		background-color: $highlight-additional;
+	}
+
 	&_common {
 		@include bold-text(20px);
 		border: none;
@@ -24,13 +32,5 @@
 			height: 19px;
 			margin-left: 10px;
 		}
-	}
-
-	&:active {
-		border: 1px solid #aaa;
-	}
-
-	&:hover {
-		background-color: $highlight-additional;
 	}
 }

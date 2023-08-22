@@ -1,12 +1,18 @@
 import { ReactNode, MouseEventHandler } from "react"
 
+export interface ButtonType {
+  text: string;
+  className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}
+
 export interface ButtonCommonType {
   text: string;
   href: string;
 	id?: string;
   className?: string;
   target?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 export interface ButtonLinkType {
@@ -40,12 +46,24 @@ export interface ProductType {
   price: number;
   discount?: number;
   stars: number;
+  shortDescription: string;
+  productDescription: string;
+  additionalInfo: string;
 }
 
 export interface ProductCardProps {
   product: ProductType;
 }
 
+export interface ModalProductCardProps extends ProductCardProps{
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 export interface ProductsProps {
   products: ProductType[];
+}
+
+export interface StarProps {
+  filled: boolean;
 }
