@@ -1,0 +1,58 @@
+@import "/src/assets/styles/mixins";
+@import "/src/assets/styles/functions";
+
+.testimonials {
+  position: relative;
+  padding: 164px 0;
+  background-color: #FCFCFC;
+  text-align: center;
+
+  &_decore-right {
+    @include backgr-img("/src/assets/images/Testimonials-Background.png");
+    background-position: initial;
+    width: 15%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &_decore-left {
+    @extend .testimonials_decore-right;
+    right: initial;
+    left: 0;
+    transform: rotate(180deg);
+  }
+
+  &__content {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  &__tegline {
+    @include highlight-text();
+  }
+
+  &__benefits-wrap {
+    @include flex-row();
+    justify-content: center;
+    column-gap: px2vw(62px);
+    row-gap: px2vw(62px);
+    flex-wrap: wrap;
+    margin-top: 102px;
+    padding-top: 102px;
+    border-top: 1px solid #E0E0E0;
+  }
+
+  &__benefit {
+    @include flex-column();
+    border-radius: 50%;
+    background-color: #F1F1F1;
+    width: 211px;
+    height: 211px;
+
+    &-description {
+      @include common-text(600);
+    }
+  }
+}

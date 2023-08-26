@@ -4,6 +4,7 @@ import OfferBanner from "./common.blocks/offer-banner/OfferBanner"
 import Products from "./common.blocks/products/Products"
 import { useLoaderData } from "react-router-dom"
 import { ProductsProps } from "@/types/main-layout-types"
+import Testimonials from "./common.blocks/testimonials/Testimonials"
 
 function Home() {
 	const { products } = useLoaderData() as ProductsProps;
@@ -15,6 +16,7 @@ function Home() {
 			<OfferBanner />
 			<About />
 			<Products products={products} />
+			<Testimonials />
     </section>
   );
 }

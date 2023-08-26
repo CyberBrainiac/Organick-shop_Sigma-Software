@@ -33,7 +33,6 @@ function getAllProduct() {
   });
 }
 
-
 export {
   getAllProduct,
 }
