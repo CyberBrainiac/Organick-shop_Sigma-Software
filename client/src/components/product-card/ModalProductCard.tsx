@@ -4,7 +4,7 @@ import { ModalProductCardProps } from "@/types/main-layout-types"
 
 const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
   const {
-    id, categories, imgUrl, name, price, discount, stars, 
+    idProduct, categories, imgUrl, name, price, discount, stars, 
     shortDescription, productDescription, additionalInfo,
   } = props.product;
 

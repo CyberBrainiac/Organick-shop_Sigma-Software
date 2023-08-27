@@ -39,7 +39,7 @@ export interface LoadMoreType {
 }
 
 export interface ProductType {
-  id: number;
+  idProduct: number;
   categories: string[];
   imgUrl: string;
   name: string;
@@ -66,4 +66,17 @@ export interface ProductsProps {
 
 export interface StarProps {
   filled: boolean;
+}
+
+export interface Testimonial {
+  id: number;
+  avatarUrl: string;
+  stars: number;
+  testimonial: string;
+  name: string;
+  role: string;
+}
+
+export interface TestimonialsSliderProps {
+  testimonials: Testimonial[];
 }

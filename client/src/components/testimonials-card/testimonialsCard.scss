@@ -1,0 +1,46 @@
+@import "/src/assets/styles/mixins";
+
+.testimonialCard {
+  @include flex-column();
+  margin-top: 60px;
+
+  &__avatar {
+    display: flex;
+    justify-content: center;
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: $border-color-main;
+
+    img {
+      @include common-img();
+      transform: scale(1.3);
+      position: relative;
+      top: 10%;
+      width: initial;
+      height: initial;
+    }
+  }
+
+  &__stars {
+    @include flex-row();
+    width: 126px;
+    margin: 25px 0;
+  }
+
+  &__testimonial {
+    @include common-text();
+    max-width: 780px;
+  }
+
+  &__name {
+    font-weight: 600;
+    margin-top: 20px;
+  }
+
+  &__role {
+    @include common-text();
+    font-size: 15px;
+  }
+}

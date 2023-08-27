@@ -1,9 +1,10 @@
 import express, { Request, Response, NextFunction } from 'express';
 import asyncHandler from "express-async-handler";
-import connection from './db';
+import { createConnection } from './db';
+import cors from 'cors';
+import { CorsOptions } from 'cors';
 
 const app = express();
-const PORT = 3000;
 
 function authenticate (req: Request, res: Response, next: NextFunction) {
   const isAuthenticate = true; // simulate authentication logic
@@ -14,6 +15,23 @@ function authenticate (req: Request, res: Response, next: NextFunction) {
   }
   next();
 }
+
+const allowedOrigins: string[] = [
+  'http://localhost:4200',
+];
+
+const corsOptions: CorsOptions = {
+  origin: (origin, callback) => {
+    
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
@@ -38,17 +56,72 @@ app.get("/", authenticate, asyncHandler(async (req: Request, res: Response, next
 }));
 
 app.get("/products", asyncHandler(async (req: Request, res: Response) => {
-  const query = 'SELECT * FROM products WHERE idProduct = 1';
+  const { id } = req.query;
+  const DB = await createConnection();
+  
 
-  connection.query(query, (error, results) => {
-    if (error) {
-        res.status(500).json({ error: 'Error retrieving products.' });
-    } else {
-        res.status(200).json(results);
-    }
-  })
+  /**
+   * ВНИМАНИЕ!
+   * ВНИМАНИЕ!
+   * ВНИМАНИЕ!
+   * Примени 
+   * преймущество 
+   * asyncHandler!
+   * ВНИМАНИЕ!
+   * ВНИМАНИЕ!
+   * ВНИМАНИЕ!
+   */
+
+  try {
+    const [rows, fields] = await DB.query(`SELECT * FROM products`);
+    res.status(200).json(rows);
+    console.log(rows);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ error: 'Error retrieving products' });
+  } finally {
+    DB.end();
+  }
+  
+  // if(id) {
+  //   const query_getProduct = `SELECT * FROM products WHERE idProduct = ${id}`;
+  //   DB.query(query_getProduct, (error, results) => {
+  //     if (error) {
+  //         res.status(500).json({ error: 'Error retrieving products' });
+  //     } else {
+  //         res.status(200).json(results);
+  //     }
+  //   })
+  // } else {
+  //   const query_getAllProducts = `SELECT * FROM products`;
+  //   DB.query(query_getAllProducts, (error, results) => {
+
+  //     if (error) {
+  //       res.status(500).json({ error: 'Error retrieving products' });
+  //     } else {
+  //       const categories = await getAllProductsCategories();
+
+  //       if(categories instanceof Error) {
+  //         res.status(500).json({ error: 'Error retrieving categories' });
+  //       }
+  //       res.status(200).json(results);
+  //     }
+  //   })
+  // }
 }));
 
+// async function getAllProductsCategories() {
+//   const query_getAllCategory = `SELECT * FROM category`;
+//   DB.query(query_getAllCategory, (error, results) => {
+//     if (error) {
+//       return error;
+//     } else {
+//       return results;
+//     }
+//   })
+// }
+
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });

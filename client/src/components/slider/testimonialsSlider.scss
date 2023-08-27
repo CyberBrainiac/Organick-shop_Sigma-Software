@@ -1,0 +1,15 @@
+@import "/src/assets/styles/variables";
+
+ul.slick-dots {
+  li.slick-active button:before {
+    color: #7EB693;
+    opacity: 1;
+    font-size: 8px;
+  }
+
+  li button:before {
+    color: $border-color-main;
+    opacity: 1;
+    font-size: 8px;
+  }
+}

@@ -4,7 +4,7 @@ import { ProductCardProps} from "@/types/main-layout-types";
 import Star from "../stars/Star";
 
 const ProductCard: React.FC<ProductCardProps> = (props) => {
-  const {id, categories, imgUrl, name, price, discount, stars} = props.product;
+  const {idProduct, categories, imgUrl, name, price, discount, stars} = props.product;
 
   function handleMouseEnter(ev: Event) {
     const targetElem = ev.target as HTMLElement;
@@ -60,9 +60,10 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
       starsList.push(<Star key={i} filled={false} />);
     }
   }
-
+  console.log(props.product);
+  
   return(
-    <div className="product-card" id={`product-card-${id}`}>
+    <div className="product-card" id={`product-card-${idProduct}`}>
       <div className="product-card__wrap">
         <div className="product-card__categories-wrap">
           {categories.map((category, index) => {

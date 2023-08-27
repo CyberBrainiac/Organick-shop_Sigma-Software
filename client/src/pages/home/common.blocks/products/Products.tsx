@@ -21,7 +21,7 @@ function Products({products}: ProductsProps) {
       <div className="products__wrap">
         {products.map((product) => {
           return(
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.idProduct} product={product} />
           )
         })}
       </div>

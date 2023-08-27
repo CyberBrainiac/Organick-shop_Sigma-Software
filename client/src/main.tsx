@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter }
 from 'react-router-dom'
 import MainLayout from './main-layout/MainLayout' 
-import { productsLoader as homeLoader } from '@/utils/loaders/productsLoader'
+import { allProductsLoader as homeLoader } from '@/utils/loaders/productsLoader'
 import Home from './pages/home/Home'
 import Sifon from './pages/sifon/Sifon'
 import MainLayout_ErrorPage from './pages/errorPages/MainLayout_ErrorPage'
