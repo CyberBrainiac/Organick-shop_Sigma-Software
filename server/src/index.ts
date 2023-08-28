@@ -3,6 +3,7 @@ import asyncHandler from "express-async-handler";
 import { createConnection } from './db';
 import cors from 'cors';
 import { CorsOptions } from 'cors';
+import { RowDataPacket } from 'mysql2';
 
 const app = express();
 
@@ -57,57 +58,133 @@ app.get("/", authenticate, asyncHandler(async (req: Request, res: Response, next
 
 app.get("/products", asyncHandler(async (req: Request, res: Response) => {
   const { id } = req.query;
-  const DB = await createConnection();
-  
 
-  /**
-   * ВНИМАНИЕ!
-   * ВНИМАНИЕ!
-   * ВНИМАНИЕ!
-   * Примени 
-   * преймущество 
-   * asyncHandler!
-   * ВНИМАНИЕ!
-   * ВНИМАНИЕ!
-   * ВНИМАНИЕ!
-   */
-
-  try {
-    const [rows, fields] = await DB.query(`SELECT * FROM products`);
-    res.status(200).json(rows);
-    console.log(rows);
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).json({ error: 'Error retrieving products' });
-  } finally {
-    DB.end();
+  if(id) {
+    if(isNaN(+id)) {
+      res.status(400).json({ error: 'Bad Request, server expects id has type: "number"' })
+    }
+    getProduct( Number(id));
+  } else {
+    getAllProducts();
   }
-  
-  // if(id) {
-  //   const query_getProduct = `SELECT * FROM products WHERE idProduct = ${id}`;
-  //   DB.query(query_getProduct, (error, results) => {
-  //     if (error) {
-  //         res.status(500).json({ error: 'Error retrieving products' });
-  //     } else {
-  //         res.status(200).json(results);
-  //     }
-  //   })
-  // } else {
-  //   const query_getAllProducts = `SELECT * FROM products`;
-  //   DB.query(query_getAllProducts, (error, results) => {
 
-  //     if (error) {
-  //       res.status(500).json({ error: 'Error retrieving products' });
-  //     } else {
-  //       const categories = await getAllProductsCategories();
+  async function getProduct(id: number) {
+    const DB = await createConnection();
+    let product: RowDataPacket[] = [];
+    let productCategories: RowDataPacket[] = [];
+    let isError = false;
 
-  //       if(categories instanceof Error) {
-  //         res.status(500).json({ error: 'Error retrieving categories' });
-  //       }
-  //       res.status(200).json(results);
-  //     }
-  //   })
-  // }
+    /**Get product*/
+    try {
+      const [rows] = await DB.query(`
+      SELECT 
+        * 
+      FROM 
+        products
+      WHERE 
+        idProduct = ${id};
+      `);
+      product = rows as RowDataPacket[];
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      res.status(500).json({ error: `Error retrieving product: ${id}` });
+      isError = true;
+    }
+
+    /**Get product categiries*/
+    try {
+      const [rows] = await DB.query(`
+      SELECT 
+        p_c.idProduct,
+        c.name
+      FROM 
+        product_category AS p_c
+      JOIN 
+        category AS c ON p_c.idCategory = c.idCategory
+      WHERE
+        p_c.idProduct = ${id};
+      `);
+      productCategories = rows as RowDataPacket[];
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      res.status(500).json({ error: 'Error retrieving categories' });
+      isError = true;
+    } finally {
+      DB.end();  //close DB after all request
+    }
+
+    product[0].categories = []; //I requested only 1 product from DB
+    productCategories.forEach(category => {
+      product[0].categories.push(category.name);
+    });
+
+    if(!isError) {
+      res.status(200).json(product);
+    }
+
+    return true;
+  }
+
+
+  async function getAllProducts() {
+    const DB = await createConnection();
+    let products: RowDataPacket[] = [];
+    let productCategories: RowDataPacket[] = [];
+    let isError = false;
+
+    /**Get All products*/
+    try {
+      const [rows] = await DB.query(`
+        SELECT 
+          * 
+        FROM 
+          products
+        ORDER BY
+          products.discount DESC;
+      `);
+      products = rows as RowDataPacket[];
+      
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      res.status(500).json({ error: 'Error retrieving products' });
+      isError = true;
+    }
+
+    /**Get products categiries*/
+    try {
+      const [rows] = await DB.query(`
+      SELECT
+        p.idProduct,
+        p.discount,
+        c.name
+      FROM
+        products p
+      JOIN
+        product_category pc ON p.idProduct = pc.idProduct
+      JOIN
+        category c ON pc.idCategory = c.idCategory;
+      `);
+      productCategories = rows as RowDataPacket[];
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      res.status(500).json({ error: 'Error retrieving categories' });
+      isError = true;
+    } finally {
+      DB.end();  //close DB after all request
+    }
+
+    products.forEach(product => product.categories = []);
+    productCategories.forEach(productCategory => {
+      const index = products.findIndex(product => product.idProduct === productCategory.idProduct);
+      products[index]?.categories.push(productCategory.name);
+    });
+
+    if(!isError) {
+      res.status(200).json(products);
+    }
+
+    return true;
+  }
 }));
 
 // async function getAllProductsCategories() {

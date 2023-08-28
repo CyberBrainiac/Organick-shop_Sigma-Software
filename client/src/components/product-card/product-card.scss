@@ -7,6 +7,7 @@
   cursor: pointer;
 
   &__wrap {
+    height: 485px;
     position: relative;
     top: 0;
     left: 0;
@@ -32,6 +33,7 @@
 
   &__img-wrap {
     width: 320px;
+    height: 324px;
     background-color: #F9F8F8;
 
     img {

@@ -16,6 +16,8 @@
 
   &__wrap {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     column-gap: 20px;
     row-gap: 20px;
   }

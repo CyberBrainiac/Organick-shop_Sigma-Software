@@ -84,7 +84,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
               className={(discount) ? 'product-card__price_cancel' : 'product-card__price'}>
               ${price}
             </span>
-            {discount && <span>${discount}</span>}
+            {!!discount && <span>${price - discount}</span>}
           </div>
           <div className="product-card__stars">{starsList}</div>
         </div>
