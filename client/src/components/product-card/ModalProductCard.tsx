@@ -2,8 +2,7 @@ import { Button, ButtonLink } from "../buttons/buttons"
 import "./modalProductCard.scss"
 import { ModalProductCardProps } from "@/types/main-layout-types"
 import Star from "../stars/Star"
-import { useState } from "react"
-import { MouseEventHandler } from "react"
+import { useEffect, useState } from "react"
 
 const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
   const {
@@ -15,6 +14,7 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
     return null;
   }
 
+  /**Create Stars*/
   let starsList = [];
   for(let i = 0; i < stars; i++) {
     starsList.push(<Star key={i} filled={true} />);
@@ -27,6 +27,7 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
     }
   }
 
+  /**Product Count Handler*/
   const [productCount, setProductCount] = useState(1);
   const [isValid, setIsValid] = useState(true);
 
@@ -44,18 +45,28 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
     setIsValid(isValidNumber);
   };
 
+  /**Toggle description text and button*/
+  const [activeDescription, setActiveDescription] = useState("product-description");
   const buttonDescription_handler= (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(event.target);
-    
+    const currentButton = event.target as HTMLButtonElement;
+
+    if(!currentButton.classList.contains("modal-product__btn_active")) {
+      const descriptionValue = ["product-description", "additional-info"];
+      const buttons: NodeListOf<HTMLButtonElement> = document.querySelectorAll(".modal-product__btn");
+      [...buttons].forEach((button) => {
+        button.classList.toggle("modal-product__btn_active");
+      });
+      if(activeDescription === descriptionValue[0]) {
+        setActiveDescription(descriptionValue[1]);
+      } else {
+        setActiveDescription(descriptionValue[0]);
+      }
+    }
   }
 
-  /**Calculate size after resizing window*/
-  let modalWindowStyle = {height: innerHeight};
-  let modalProductContainerStyle = {};
-
   return(
-    <div style={modalWindowStyle} className="modal-product">
-      <div className="modal-product_top-decore"></div>
+    <div className="modal-product">
+      <div className="modal-product_top-decore" onClick={props.onClose}></div>
       <div className="modal-product__container">
         <div className="modal-product__content">
           <div className="modal-product__img-container">
@@ -87,7 +98,7 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
               <p className="modal-product__quantity-text">Quantity :</p>
               <input
                 className="modal-product__inpt"
-                type="text"
+                type="number"
                 value={productCount}
                 onChange={handleNumberChange}
                 style={{ borderColor: isValid ? 'initial' : '#ff0000' }}
@@ -111,14 +122,22 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
             />
           </div>
           <div className="modal-product__product-description-wrap">
-            <div className="modal-product__product-description">{productDescription}</div>
-            <div className="modal-product__product-description">{additionalInfo}</div>
+            {
+              (activeDescription === "product-description") ?
+              <div className="modal-product__product-description">{productDescription}</div> :
+              null
+            }
+            {
+              (activeDescription === "additional-info") ?
+              <div className="modal-product__product-description">{additionalInfo}</div> :
+              null
+            }
           </div>
         </div>
 
         <Button className="modal-product__btn-close" text="X" onClick={props.onClose} />
       </div>
-      <div className="modal-product_bottom-decore"></div>
+      <div className="modal-product_bottom-decore" onClick={props.onClose}></div>
     </div>
   );
 }
