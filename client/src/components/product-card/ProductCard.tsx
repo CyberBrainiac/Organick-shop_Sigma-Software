@@ -1,10 +1,28 @@
 import "./product-card.scss"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ProductCardProps} from "@/types/main-layout-types";
 import Star from "../stars/Star";
+import ModalProductCard from "./ModalProductCard";
 
 const ProductCard: React.FC<ProductCardProps> = (props) => {
   const {idProduct, categories, imgUrl, name, price, discount, stars} = props.product;
+  const componentRef = useRef<HTMLDivElement>(null);
+
+  /**Card animation handlers*/
+  useEffect(() => {
+    componentRef.current?.addEventListener("mouseenter", handleMouseEnter);
+    componentRef.current?.addEventListener("mouseleave", handleMouseLeave);
+    componentRef.current?.addEventListener("click", openModal);
+
+    return(
+      () => {
+        componentRef.current?.removeEventListener("mouseenter", handleMouseEnter);
+        componentRef.current?.removeEventListener("mouseleave", handleMouseLeave);
+        componentRef.current?.removeEventListener("click", openModal);
+      }
+    );
+  }, []);
+  
 
   function handleMouseEnter(ev: Event) {
     const targetElem = ev.target as HTMLElement;
@@ -27,7 +45,9 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
     })
   }
 
+  /**Card modal window handler*/
   const [isModalOpen, setModalOpen] = useState(false);
+
   const openModal = () => {
     setModalOpen(true);
   };
@@ -35,19 +55,6 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
   const closeModal = () => {
     setModalOpen(false);
   };
-
-  useEffect(() => {
-    const productCardElemArr = document.querySelectorAll(".product-card");
-    productCardElemArr?.forEach((productCard) => productCard.addEventListener("mouseenter", handleMouseEnter));
-    productCardElemArr?.forEach((productCard) => productCard.addEventListener("mouseleave", handleMouseLeave));
-
-    return(
-      () => {
-        productCardElemArr?.forEach((productCard) => productCard.removeEventListener("mouseenter", handleMouseEnter));
-        productCardElemArr?.forEach((productCard) => productCard.removeEventListener("mouseleave", handleMouseLeave));
-      }
-    );
-  }, []);
 
   let starsList = [];
   for(let i = 0; i < stars; i++) {
@@ -60,10 +67,10 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
       starsList.push(<Star key={i} filled={false} />);
     }
   }
-  console.log(props.product);
   
   return(
-    <div className="product-card" id={`product-card-${idProduct}`}>
+    <>
+    <div ref={componentRef} className="product-card" id={`product-card-${idProduct}`}>
       <div className="product-card__wrap">
         <div className="product-card__categories-wrap">
           {categories.map((category, index) => {
@@ -82,15 +89,18 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
           <div className="product-card__price-wrap">
             <span 
               className={(discount) ? 'product-card__price_cancel' : 'product-card__price'}>
-              ${price}
+              ${price.toFixed(2)}
             </span>
-            {!!discount && <span>${price - discount}</span>}
+            {!!discount && <span>${(price - discount).toFixed(2)}</span>}
           </div>
           <div className="product-card__stars">{starsList}</div>
         </div>
       </div>
       <div className="product-card__substrate"></div>
     </div>
+
+    <ModalProductCard isOpen={isModalOpen} onClose={closeModal} product={props.product} />
+    </>
   );
 }
 

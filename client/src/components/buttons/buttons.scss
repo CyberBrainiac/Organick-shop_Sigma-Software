@@ -2,7 +2,7 @@
 @import "@/assets/styles/mixins";
 
 .button {
-	@include transition-main();
+	transition: all $trans-card-time;
 
 	&:active {
 		border: 1px solid #aaa;

@@ -9,7 +9,7 @@ const Button: React.FC<ButtonType> = ({text, className, onClick}) => {
       className={`${className} button`}
       onClick={onClick}
     >
-      <h6>{text}</h6>
+      {text}
     </button>
   );
 }

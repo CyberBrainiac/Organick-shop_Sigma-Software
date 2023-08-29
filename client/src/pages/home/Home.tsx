@@ -5,10 +5,10 @@ import Products from "./common.blocks/products/Products"
 import { useLoaderData } from "react-router-dom"
 import { ProductsProps } from "@/types/main-layout-types"
 import Testimonials from "./common.blocks/testimonials/Testimonials"
+import Offer from "./common.blocks/offer/Offer"
 
 function Home() {
 	const { products } = useLoaderData() as ProductsProps;
-  console.log("Save data to session storge!");
 
 	return (
 		<section className='home'>
@@ -17,6 +17,7 @@ function Home() {
 			<About />
 			<Products products={products} />
 			<Testimonials />
+			<Offer />
     </section>
   );
 }

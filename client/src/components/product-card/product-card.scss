@@ -3,6 +3,7 @@
 
 .product-card {
   position: relative;
+  z-index: 0;
   width: 320px;
   cursor: pointer;
 
@@ -91,8 +92,7 @@
     @include flex-row;
     display: inline-flex;
     position: relative;
-    left: 100%;
-    transform: translateX(-170%);
+    transform: translateX(50%);
   }
 
   &__substrate {
@@ -103,15 +103,15 @@
     width: 100%;
     height: 100%;
     border-radius: $card-border-rad;
-    box-shadow: 0 0 3px 2px rgba(219, 220, 224);
-    background-color: rgba(219, 220, 224);
+    box-shadow: 0 0 3px 2px rgb(195, 195, 195);
+    background-color: rgba(195, 195, 195);
     transition: 0.3s;
 
     &_hover {
       top: 10px;
       left: 10px;
-      box-shadow: 0 0 3px 2px rgb(235, 236, 241);
-      background-color: rgb(235, 236, 241);
+      box-shadow: 0 0 3px 2px rgb(225, 225, 225);
+      background-color: rgb(225, 225, 225);
     }
   }
 }

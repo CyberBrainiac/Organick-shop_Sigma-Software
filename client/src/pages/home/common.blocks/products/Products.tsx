@@ -7,9 +7,15 @@ import ProductCard from "@/components/product-card/ProductCard"
 
 function Products({products}: ProductsProps) {
   const [visibleMore, changeVisibleMore] = useState(false);
+  const [visibleCount, changeVisibleCount] = useState(8);
 
-  const loadMore: LoadMoreType = (event) => {
-    console.log(event.target);
+  const loadMore: LoadMoreType = () => {
+    if(visibleMore) {
+      changeVisibleCount(8);
+    } else {
+      changeVisibleCount(16);
+    }
+
     changeVisibleMore(prevValue => !prevValue);
   }
 
@@ -19,7 +25,10 @@ function Products({products}: ProductsProps) {
       <h2 className="products__heading">Our Products</h2>
 
       <div className="products__wrap">
-        {products.map((product) => {
+        {products.map((product, index) => {
+          if(index >= visibleCount) {
+            return  null;
+          }
           return(
             <ProductCard key={product.idProduct} product={product} />
           )
