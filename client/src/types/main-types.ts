@@ -30,8 +30,8 @@ export interface CountProviderType {
 
 export interface UseCountType {
 	countProd: number;
-	incProdVal: MouseEventHandler<HTMLButtonElement>;
-	decProdVal: MouseEventHandler<HTMLButtonElement>;
+	addProdVal: (count: number) => void;
+	removeProdVal: (count: number) => void;
 }
 
 export interface LoadMoreType {
@@ -55,13 +55,17 @@ export interface ProductCardProps {
   product: ProductType;
 }
 
+export interface ProductsProps {
+  products: ProductType[];
+}
+
 export interface ModalProductCardProps extends ProductCardProps{
   isOpen: boolean;
   onClose: () => void;
 }
 
-export interface ProductsProps {
-  products: ProductType[];
+export interface CartProductsProps extends ProductCardProps {
+  quantity: number;
 }
 
 export interface StarProps {
@@ -79,4 +83,8 @@ export interface Testimonial {
 
 export interface TestimonialsSliderProps {
   testimonials: Testimonial[];
+}
+
+export interface UseProductProviderType {
+
 }

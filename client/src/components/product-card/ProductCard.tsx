@@ -1,8 +1,8 @@
 import "./product-card.scss"
 import { useEffect, useState, useRef } from "react";
-import { ProductCardProps} from "@/types/main-layout-types";
-import Star from "../stars/Star";
+import { ProductCardProps} from "@/types/main-types";
 import ModalProductCard from "./ModalProductCard";
+import createStarsList from "../stars/createStarsList";
 
 const ProductCard: React.FC<ProductCardProps> = (props) => {
   const {idProduct, categories, imgUrl, name, price, discount, stars} = props.product;
@@ -56,17 +56,7 @@ const ProductCard: React.FC<ProductCardProps> = (props) => {
     setModalOpen(false);
   };
 
-  let starsList = [];
-  for(let i = 0; i < stars; i++) {
-    starsList.push(<Star key={i} filled={true} />);
-  }
-  if (starsList.length < 5) {
-    const filledStars = starsList.length;
-
-    for (let i = filledStars + 1; i <= 5; i++) {
-      starsList.push(<Star key={i} filled={false} />);
-    }
-  }
+  const starsList = createStarsList(stars);
   
   return(
     <>

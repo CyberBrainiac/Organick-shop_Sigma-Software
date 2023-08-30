@@ -1,0 +1,73 @@
+@import "/src/assets/styles/variables";
+@import "/src/assets/styles/mixins";
+@import "/src/assets/styles/functions";
+
+.cart {
+  &__decore {
+    height: 450px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    &_bg-right {
+      @include backgr-img("/src/assets/images/Card-Right-Decore.png");
+      background-position: right;
+      width: 40%;
+      height: 100%;
+    }
+
+    &_bg-left {
+      @include backgr-img("/src/assets/images/Card-Left-Decore.png");
+      background-position: 10%;
+      width:60%;
+      height: 100%;
+    }
+
+    &_garlic {
+      @include backgr-img("/src/assets/images/Garlic-BG.svg");
+      position: absolute;
+      top: 20%;
+      left: 34%;
+      width: 124.303px;
+      height: 114.052px;
+      transform: rotate(132.778deg);
+    }
+
+    &_strawberries {
+      @include backgr-img("/src/assets/images/Strawberry-Hero-BG.svg");
+      background-position: right;
+      position: absolute;
+      top: 8%;
+      left: 60%;
+      width: 100.4px;
+      height: 120.12px;
+      transform: rotate(157.075deg);
+    }
+  }
+
+  &__heading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__wrap {
+    @include flex-column();
+    background-color: rgba(253, 176, 45, 0.16);
+    padding: 150px px2vw(100px) 58px px2vw($page-bg-side-padding);
+  }
+
+  &__btn-order {
+    width: 218px;
+    background-color: $highlight-main;
+    color: $page-bg-color-main;
+    padding: 23px 57px;
+    border-radius: 16px;
+    margin-top: 58px;
+  }
+
+  &__btn-confirm {
+    @extend .cart__btn-order;
+  }
+}

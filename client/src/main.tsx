@@ -8,8 +8,8 @@ from 'react-router-dom'
 import MainLayout from './main-layout/MainLayout' 
 import { allProductsLoader as homeLoader } from '@/utils/loaders/productsLoader'
 import Home from './pages/home/Home'
-import Sifon from './pages/sifon/Sifon'
 import MainLayout_ErrorPage from './pages/errorPages/MainLayout_ErrorPage'
+import Cart from './pages/cart/Cart'
 
 const router = createBrowserRouter([
   {
@@ -22,9 +22,10 @@ const router = createBrowserRouter([
         element: <Home />,
         loader: homeLoader,
       },
-      {
-        path: 'sifon',
-        element: <Sifon />,
+      { 
+        path: '/cart',
+        element: <Cart />,
+        // loader: homeLoader,
       },
       {
         path: '*',

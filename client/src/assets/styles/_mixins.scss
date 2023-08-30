@@ -88,5 +88,5 @@
 
 /*Transition*/
 @mixin transition-main() {
-	transition: all $trans-default-time;
+	transition: all $trans-default-time linear;
 }

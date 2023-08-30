@@ -2,7 +2,7 @@ import "./testimonialsSlider.scss"
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Slider from "react-slick"
-import { Testimonial, TestimonialsSliderProps } from "@/types/main-layout-types"
+import { Testimonial, TestimonialsSliderProps } from "@/types/main-types"
 import TestimonialsCard from "../testimonials-card/TestimonialsCard"
 
 const TestimonialsSlider: React.FC<TestimonialsSliderProps> = ({testimonials}) => {

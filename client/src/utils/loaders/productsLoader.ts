@@ -1,6 +1,6 @@
 import axios from "axios";
 import { loadersErrorHandler } from "./loadersErrorHandler";
-import { ProductType } from "@/types/main-layout-types";
+import { ProductType } from "@/types/main-types";
 
 export async function allProductsLoader() {
 	const apiUrl = "http://localhost:3000/products";

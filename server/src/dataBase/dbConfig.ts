@@ -6,7 +6,7 @@ export async function createConnection() {
 
   if (!process.env.DB_HOST || !process.env.DB_USER || !process.env.DB_PASS || !process.env.DB_NAME || !process.env.DB_PORT) {
     console.error("Required environment variables are missing.");
-    process.exit(1); // Exit the process with an error code
+    process.exit(1);
   }
 
   const connection = await mysql.createConnection({

@@ -1,8 +1,9 @@
 import { Button, ButtonLink } from "../buttons/buttons"
 import "./modalProductCard.scss"
-import { ModalProductCardProps } from "@/types/main-layout-types"
-import Star from "../stars/Star"
-import { useEffect, useState } from "react"
+import { ModalProductCardProps } from "@/types/main-types"
+import { useState } from "react"
+import createStarsList from "../stars/createStarsList"
+import { useCount } from "../contexts/CounterProvider"
 
 const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
   const {
@@ -15,23 +16,13 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
   }
 
   /**Create Stars*/
-  let starsList = [];
-  for(let i = 0; i < stars; i++) {
-    starsList.push(<Star key={i} filled={true} />);
-  }
-  if (starsList.length < 5) {
-    const filledStars = starsList.length;
-
-    for (let i = filledStars + 1; i <= 5; i++) {
-      starsList.push(<Star key={i} filled={false} />);
-    }
-  }
+  const starsList = createStarsList(stars);
 
   /**Product Count Handler*/
   const [productCount, setProductCount] = useState(1);
   const [isValid, setIsValid] = useState(true);
 
-  const handleNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
 
     const isValidNumber = (() => {
@@ -62,6 +53,25 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
         setActiveDescription(descriptionValue[0]);
       }
     }
+  }
+
+  /**Providers*/
+  const { addProdVal } = useCount();
+
+  function provideQuantity() {
+    const buttonCover = document.querySelector(".modal-product__btn-to-shop_cover") as HTMLDivElement;
+    const message = document.querySelector(".modal-product__message") as HTMLDivElement;
+    
+    addProdVal(productCount);
+    
+    /**Animation after user action*/
+    buttonCover.style.display = "block";
+    message.classList.toggle("modal-product__message_active");
+
+    setTimeout(() =>{
+      buttonCover.style.display = "none";
+      message.classList.toggle("modal-product__message_active");
+    }, 2500);
   }
 
   return(
@@ -100,10 +110,21 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
                 className="modal-product__inpt"
                 type="number"
                 value={productCount}
-                onChange={handleNumberChange}
+                onChange={handleInput}
                 style={{ borderColor: isValid ? 'initial' : '#ff0000' }}
               />
-              <ButtonLink className="modal-product__btn-to-shop" text="Add To Cart" href={isValid ? "/shop" : "#"} />
+              <div className="modal-product__add-to-cart">
+                <ButtonLink 
+                  className="modal-product__btn-to-shop" 
+                  text="Add To Cart" 
+                  onClick={isValid ? provideQuantity : undefined}
+                  href="#"
+                />
+                <div className="modal-product__btn-to-shop_cover"></div>
+                <div className="modal-product__message">
+                  Product has been added to cart
+                </div>
+              </div>
             </div>
           </div>
         </div>

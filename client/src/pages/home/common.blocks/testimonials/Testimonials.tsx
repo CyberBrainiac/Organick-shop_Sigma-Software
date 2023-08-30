@@ -1,5 +1,5 @@
 import "./testimonials.scss"
-import { Testimonial } from "@/types/main-layout-types"
+import { Testimonial } from "@/types/main-types"
 import TestimonialsSlider from "@/components/slider/TestimonialsSlider"
 
 const Testimonials: React.FC = () => {

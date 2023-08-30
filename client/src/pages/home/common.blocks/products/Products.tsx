@@ -1,8 +1,8 @@
 import "./products.scss"
 import { ButtonLink } from "@/components/buttons/buttons"
-import { LoadMoreType } from "@/types/main-layout-types"
+import { LoadMoreType } from "@/types/main-types"
 import { useState } from "react"
-import { ProductsProps } from "@/types/main-layout-types"
+import { ProductsProps } from "@/types/main-types"
 import ProductCard from "@/components/product-card/ProductCard"
 
 function Products({products}: ProductsProps) {

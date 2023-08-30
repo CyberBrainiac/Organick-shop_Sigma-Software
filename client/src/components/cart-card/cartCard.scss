@@ -1,0 +1,34 @@
+@import "/src/assets/styles/variables";
+@import "/src/assets/styles/mixins";
+
+.cart-card {
+
+  &__img-wrap {
+    width: 292px;
+    height: 226px;
+  }
+
+  &__price-wrap {
+    @extend .product-card__price-wrap;
+  }
+
+  &__price_cancel {
+    @extend .product-card__price_cancel;
+  }
+
+  &__quantity-wrap {
+    @extend .modal-product__quantity-wrap;
+  }
+
+  &__quantity-text {
+    @extend .modal-product__quantity-text;
+  }
+
+  &__inpt {
+    @extend .modal-product__inpt;
+  }
+
+  &__btn-close {
+    @extend .modal-product__btn-close;
+  }
+}

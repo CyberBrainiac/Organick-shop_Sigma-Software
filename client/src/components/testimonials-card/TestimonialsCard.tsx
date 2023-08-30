@@ -1,19 +1,9 @@
 import "./testimonialsCard.scss"
-import { Testimonial } from "@/types/main-layout-types"
-import Star from "../stars/Star";
+import { Testimonial } from "@/types/main-types"
+import createStarsList from "../stars/createStarsList";
 
 const TestimonialsCard: React.FC<Testimonial> = ({avatarUrl, stars, testimonial, name, role}) => {
-  let starsList = [];
-  for(let i = 0; i < stars; i++) {
-    starsList.push(<Star key={i} filled={true} />);
-  }
-  if (starsList.length < 5) {
-    const filledStars = starsList.length;
-
-    for (let i = filledStars + 1; i <= 5; i++) {
-      starsList.push(<Star key={i} filled={false} />);
-    }
-  }
+  const starsList = createStarsList(stars);
 
   return(
     <div className="testimonialCard">

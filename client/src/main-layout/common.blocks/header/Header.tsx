@@ -1,8 +1,8 @@
-import Cart from "./cart/Cart"
+import "./header.scss"
+import CartNav from "./cartNav/CartNav"
 import Logo from "@/components/logo/Logo"
 import Nav from "./nav/Nav"
 import Search from "./search/Search"
-import "./header.scss"
 
 export default function Header() {
   return(
@@ -11,7 +11,7 @@ export default function Header() {
 			<Nav />
 			<div className="header_search-cart-wrap">
 				<Search />
-				<Cart />
+				<CartNav />
 			</div>
     </header>
   )

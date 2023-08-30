@@ -1,6 +1,6 @@
 import React from "react"
 import "./buttons.scss"
-import { ButtonCommonType, ButtonLinkType, ButtonType } from "@/types/main-layout-types" 
+import { ButtonCommonType, ButtonLinkType, ButtonType } from "@/types/main-types" 
 import { Link } from "react-router-dom";
 
 const Button: React.FC<ButtonType> = ({text, className, onClick}) => {

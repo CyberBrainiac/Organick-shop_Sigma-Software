@@ -1,5 +1,5 @@
 import "./star.scss"
-import { StarProps } from "@/types/main-layout-types";
+import { StarProps } from "@/types/main-types";
 
 function Star(props: StarProps) {
   return(

@@ -1,30 +1,29 @@
 import { createContext, useContext, useState } from "react"
-import { CountProviderType, UseCountType } from '@/types/main-layout-types'
+import { CountProviderType, UseCountType } from '@/types/main-types'
 
-const CountProductsContext = createContext<UseCountType>({countProd: 0, incProdVal: ()=>{}, decProdVal: ()=>{}});
+const CountProductsContext = createContext<UseCountType>({countProd: 0, addProdVal() {}, removeProdVal() {}});
 
 function CounterProvider({children} : CountProviderType) {
 	const [countProd, changeProdVal] = useState(0);
 
-	function incProdVal() {
-		const newVal = countProd + 1;
-		changeProdVal(newVal);
+	function addProdVal(count: number) {
+		changeProdVal((prevValue) => prevValue + count);
 	}
 
-	function decProdVal() {
-		const newVal = countProd - 1;
+	function removeProdVal(count: number) {
+		const currentCount = countProd - count;
 
-		if(newVal > 0) {
-			throw new Error("Prodact count in cart can`t be less then 0");
+		if(currentCount < 0) {
+			throw new Error("Product count in cart can`t be less then 0");
 		}
 
-		changeProdVal(newVal);
+		changeProdVal((prevValue) => prevValue - count);
 	}
 
 	const value = {
 		countProd,
-		incProdVal,
-		decProdVal,
+		addProdVal,
+		removeProdVal,
 	}
 
 	return(
