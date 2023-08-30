@@ -55,7 +55,8 @@
   &__wrap {
     @include flex-column();
     background-color: rgba(253, 176, 45, 0.16);
-    padding: 150px px2vw(100px) 58px px2vw($page-bg-side-padding);
+    padding: 150px 0 58px 0;
+    row-gap: 20px;
   }
 
   &__btn-order {
@@ -69,5 +70,7 @@
 
   &__btn-confirm {
     @extend .cart__btn-order;
+    text-align: center;
+    letter-spacing: 0.5px;
   }
 }

@@ -1,3 +1,4 @@
+@import "./functions";
 @media screen and (max-width: 1399.5px) {
 	div.nav {
 		display: grid;
@@ -10,5 +11,13 @@
 		& :nth-child(3) {
 			order: 1;
 		}
+	}
+
+	div.cart-card {
+		padding: 0 px2vw(20px) 0 px2vw(100px);
+	}
+
+	input.cart-card__inpt {
+		margin-right: 0;
 	}
 }

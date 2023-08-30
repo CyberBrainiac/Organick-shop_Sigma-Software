@@ -1,4 +1,4 @@
-import { ReactNode, MouseEventHandler } from "react"
+import { ReactNode } from "react"
 
 export interface ButtonType {
   text: string;
@@ -24,7 +24,7 @@ export interface ButtonLinkType {
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
-export interface CountProviderType {
+export interface ProviderChildren {
 	children: ReactNode,
 }
 
@@ -85,6 +85,19 @@ export interface TestimonialsSliderProps {
   testimonials: Testimonial[];
 }
 
-export interface UseProductProviderType {
+export interface SavedProductType {
+  idProduct: number;
+  quantity: number; 
+  product: ProductType; 
+}
 
+export interface ProductContextType {
+  getProducts: SavedProductType[];
+  saveProduct: (props: CartProductsProps) => void;
+}
+
+export interface CardProductProps {
+  quantity: number;
+  product: ProductType;
+  onClose: () => void;
 }

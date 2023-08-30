@@ -4,6 +4,7 @@ import { ModalProductCardProps } from "@/types/main-types"
 import { useState } from "react"
 import createStarsList from "../stars/createStarsList"
 import { useCount } from "../contexts/CounterProvider"
+import { useProduct } from "../contexts/CartProvider"
 
 const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
   const {
@@ -57,12 +58,14 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
 
   /**Providers*/
   const { addProdVal } = useCount();
+  const { saveProduct } = useProduct();
 
   function provideQuantity() {
     const buttonCover = document.querySelector(".modal-product__btn-to-shop_cover") as HTMLDivElement;
     const message = document.querySelector(".modal-product__message") as HTMLDivElement;
     
     addProdVal(productCount);
+    provideProduct();
     
     /**Animation after user action*/
     buttonCover.style.display = "block";
@@ -72,6 +75,14 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
       buttonCover.style.display = "none";
       message.classList.toggle("modal-product__message_active");
     }, 2500);
+
+  }
+
+  function provideProduct() {
+    saveProduct({
+      quantity: productCount, 
+      product: props.product
+    });
   }
 
   return(

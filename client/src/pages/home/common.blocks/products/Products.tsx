@@ -20,7 +20,7 @@ function Products({products}: ProductsProps) {
   }
 
   return(
-    <div className="products">
+    <div className="products" id="products">
       <p className="products__tegline">Categories</p>
       <h2 className="products__heading">Our Products</h2>
 

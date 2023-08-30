@@ -1,9 +1,9 @@
 import { createContext, useContext, useState } from "react"
-import { CountProviderType, UseCountType } from '@/types/main-types'
+import { ProviderChildren, UseCountType } from '@/types/main-types'
 
 const CountProductsContext = createContext<UseCountType>({countProd: 0, addProdVal() {}, removeProdVal() {}});
 
-function CounterProvider({children} : CountProviderType) {
+function CounterProvider({children}: ProviderChildren) {
 	const [countProd, changeProdVal] = useState(0);
 
 	function addProdVal(count: number) {

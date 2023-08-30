@@ -114,10 +114,15 @@
     @include bold-text(20px);
     width: px2vw(134px);
     height: px2vw(80px);
+    max-height: 80px;
+    min-width: 60px;
+    min-height: 40px;
     border: 2px solid $highlight-main;
     border-radius: $btn-border-rad;
     text-align: center;
     padding-left: 12px;
+    background-color: $page-bg-color-main;
+    color: rgba(39, 76, 91, 0.4);
   }
 
   &__add-to-cart {

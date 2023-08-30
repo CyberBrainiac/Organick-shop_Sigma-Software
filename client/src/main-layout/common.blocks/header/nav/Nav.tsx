@@ -7,7 +7,7 @@ function Nav() {
 			<ButtonCommon href="/" text="Home" />
 			<ButtonCommon href="/about" text="About" />
 			<ButtonCommon href="/pages" text="Pages" />
-			<ButtonCommon href="/shop" text="Shop" />
+			<ButtonCommon href="/products" text="Shop" />
 			<ButtonCommon href="/projects" text="Projects" />
 			<ButtonCommon href="/news" text="News" />
 		</div>

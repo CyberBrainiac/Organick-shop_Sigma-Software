@@ -1,13 +1,11 @@
 import "./cartCard.scss"
 import { Button } from "../buttons/buttons";
-import { CardProductsProps } from "@/types/main-types";
+import { CardProductProps } from "@/types/main-types";
 
-const CartCard: React.FC<CardProductsProps> = (props) => {
-  const {idProduct, categories, imgUrl, name, price, discount, stars} = props.product;
-  const isOpen = props.isOpen;
-  const onClose = props.onClose;
-  const quantity = props.quantity;
-  
+const CartCard: React.FC<CardProductProps> = (props) => {
+  const {quantity, product, onClose} = props
+  const {imgUrl, name, price, discount} = product;
+
   return(
     <div className="cart-card">
       <div className="cart-card__img-wrap">
@@ -20,10 +18,13 @@ const CartCard: React.FC<CardProductsProps> = (props) => {
               className={(discount) ? 'cart-card__price_cancel' : 'cart-card__price'}>
               ${price.toFixed(2)}
             </span>
-            {!!discount && <span>${(price - discount).toFixed(2)}</span>}
+            {!!discount && <span className="cart-card__discount">
+              ${(price - discount).toFixed(2)}
+            </span>}
         </div>
+      </div>
         <div className="cart-card__quantity-wrap">
-          <p className="cart-card__quantity-text">Quantity :</p>
+          <p className="cart-card__quantity-text">Quantity:</p>
           <input
             className="cart-card__inpt"
             type="number"
@@ -32,7 +33,8 @@ const CartCard: React.FC<CardProductsProps> = (props) => {
           />
           <Button className="cart-card__btn-close" text="X" onClick={props.onClose} />
         </div>
-      </div>
     </div>
   );
 }
+
+export default CartCard;

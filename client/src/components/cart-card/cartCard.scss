@@ -1,34 +1,80 @@
 @import "/src/assets/styles/variables";
 @import "/src/assets/styles/mixins";
+@import "/src/assets/styles/functions";
+@import "/src/components/product-card/product-card.scss";
+@import "/src/components/product-card/modalProductCard.scss";
 
 .cart-card {
+  @include flex-row();
+  width: 100%;
+  padding: 0 px2vw(100px) 0 px2vw($page-bg-side-padding);
 
   &__img-wrap {
+    position: relative;
     width: 292px;
     height: 226px;
+    min-width: 292px;
+    min-height: 226px;
+    background-color: #F9F8F8;
+    border-radius: $card-border-rad;
+    z-index: -1;
+
+    img {
+      @include common-img();
+      mix-blend-mode: multiply;
+      border-radius: $card-border-rad;
+    }
+  }
+
+  &__heading {
+    font-weight: 600;
+    align-self: auto;
   }
 
   &__price-wrap {
-    @extend .product-card__price-wrap;
+    @include common-text(700);
+    font-family: $Roboto;
+    // margin-right: px2vw(360px);
+  }
+
+  &__discount {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  &__description {
+    @include flex-row();
+    margin-right: 17%;
+    margin-left: 20px;
   }
 
   &__price_cancel {
     @extend .product-card__price_cancel;
+    font-size: 24px;
+    font-family: $Roboto;
+    display: inline-block;
+    margin: 0 10px;
   }
 
   &__quantity-wrap {
     @extend .modal-product__quantity-wrap;
+    margin-top: 0;
+    flex-wrap: nowrap;
   }
 
   &__quantity-text {
     @extend .modal-product__quantity-text;
+    font-size: 32px;
   }
 
   &__inpt {
     @extend .modal-product__inpt;
+    margin-right: px2vw(70px);
   }
 
   &__btn-close {
     @extend .modal-product__btn-close;
+    position: static;
   }
 }
