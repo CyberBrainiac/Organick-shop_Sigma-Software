@@ -59,6 +59,23 @@
     row-gap: 20px;
   }
 
+  &__sum-info {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding-right: px2vw($page-bg-side-padding);
+
+    &_container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 1fr;
+
+      & :nth-child(even) {
+        margin-left: 30px;
+      }
+    }
+  }
+
   &__btn-order {
     width: 218px;
     background-color: $highlight-main;

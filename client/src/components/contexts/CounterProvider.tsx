@@ -1,13 +1,22 @@
 import { createContext, useContext, useState } from "react"
 import { ProviderChildren, UseCountType } from '@/types/main-types'
 
-const CountProductsContext = createContext<UseCountType>({countProd: 0, addProdVal() {}, removeProdVal() {}});
+const CountProductsContext = createContext<UseCountType>({
+	countProd: 0,
+	addProdVal() {},
+	removeProdVal() {},
+	setProdVal() {},
+});
 
 function CounterProvider({children}: ProviderChildren) {
 	const [countProd, changeProdVal] = useState(0);
 
 	function addProdVal(count: number) {
 		changeProdVal((prevValue) => prevValue + count);
+	}
+
+	function setProdVal(count: number) {
+		changeProdVal(count);
 	}
 
 	function removeProdVal(count: number) {
@@ -24,6 +33,7 @@ function CounterProvider({children}: ProviderChildren) {
 		countProd,
 		addProdVal,
 		removeProdVal,
+		setProdVal,
 	}
 
 	return(

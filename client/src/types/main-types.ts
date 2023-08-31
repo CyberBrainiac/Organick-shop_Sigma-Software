@@ -2,6 +2,7 @@ import { ReactNode } from "react"
 
 export interface ButtonType {
   text: string;
+  type?: string;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -11,6 +12,7 @@ export interface ButtonCommonType {
   href: string;
 	id?: string;
   className?: string;
+  type?: string;
   target?: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
@@ -32,6 +34,7 @@ export interface UseCountType {
 	countProd: number;
 	addProdVal: (count: number) => void;
 	removeProdVal: (count: number) => void;
+  setProdVal: (count: number) => void;
 }
 
 export interface LoadMoreType {
@@ -93,11 +96,32 @@ export interface SavedProductType {
 
 export interface ProductContextType {
   getProducts: SavedProductType[];
-  saveProduct: (props: CartProductsProps) => void;
+  modifyProduct: (props: ModifyProductProps) => void;
+  addProduct: (props: SavedProductType) => void;
 }
 
 export interface CardProductProps {
   quantity: number;
   product: ProductType;
-  onClose: () => void;
+  onDelete: (idProduct: number) => void;
+  onUpdateInpt: (idProduct: number, newQuantity: number) => void;
+}
+
+export interface ModifyProductProps {
+  action: string;
+  idProduct: number;
+  quantityDifference?: number;
+}
+
+export interface UserInfoType {
+  address: string;
+  email: string;
+  message: string;
+  name: string;
+  phoneNumber: string;
+}
+
+export interface FormProps {
+  orderProducts: SavedProductType[];
+  userInfo: UserInfoType;
 }

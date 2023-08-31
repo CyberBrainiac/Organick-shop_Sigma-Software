@@ -3,8 +3,10 @@ import asyncHandler from "express-async-handler";
 import cors from 'cors';
 import corsOptions from './cors/corsOptions';
 import routerProducts from './routes/prooductsRoute';
+import authenticate from './middleware/authenticate';
 
 const app = express();
+const PORT = 3200;
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -15,18 +17,6 @@ app.get("/", authenticate, asyncHandler(async (req: Request, res: Response, next
   res.send("This is XSRF key");
 }));
 
-const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
-
-
-function authenticate (req: Request, res: Response, next: NextFunction) {
-  const isAuthenticate = true; // simulate authentication logic
-  console.log('authenticate');
-
-  if(!isAuthenticate) {
-    res.status(401).send("Unauthorized");
-  }
-  next();
-}

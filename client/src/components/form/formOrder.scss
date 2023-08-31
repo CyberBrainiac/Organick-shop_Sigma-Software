@@ -1,0 +1,84 @@
+@import "/src/assets/styles/variables";
+@import "/src/assets/styles/mixins";
+@import "/src/assets/styles/functions";
+
+.form-order {
+  width: 100%;
+  max-width: px2vw(1200px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 3fr;
+  row-gap: 50px;
+  column-gap: 46px;
+  margin-top: 100px;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+
+    .error {
+      @include bold-text(18px);
+      text-align: center;
+      padding: 5px;
+      color: #ff0000;
+    }
+
+    label {
+      @include bold-text(20px);
+      margin-bottom: 26px;
+    }
+    
+    input {
+      @include common-text();
+      padding-left: 23px;
+      width: 100%;
+      height: 80px;
+      min-width: 220px;
+      border: 1px solid $text-color-highlight;
+      border-radius: $btn-border-rad;
+    }
+
+    ::placeholder {
+      color: #ABABAB;
+      font-family: Roboto;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+
+  /*message field*/
+  & :nth-child(5) {
+    grid-column: 1/3;
+    grid-row: 3/5;
+
+    input {
+      height: 100%;
+      width: 100%;
+    }
+
+    ::placeholder {
+      position: relative;
+      top: -40%;
+    }
+  }
+
+  button {
+    @include bold-text(20px);
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    max-width: 220px;
+    height: 80px;
+    color: $page-bg-color-main;
+    background-color: $highlight-main;
+    border-radius: $btn-border-rad;
+    padding: 28px 70px;
+    grid-column: 1/3;
+
+    &:active {
+      background-color: $highlight-additional;
+    }
+  }
+}

@@ -10,6 +10,7 @@ import { allProductsLoader as homeLoader } from '@/utils/loaders/productsLoader'
 import Home from './pages/home/Home'
 import MainLayout_ErrorPage from './pages/errorPages/MainLayout_ErrorPage'
 import Cart from './pages/cart/Cart'
+import CompletedOrder from './pages/complatedOrder/ComplatedOrder'
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,10 @@ const router = createBrowserRouter([
       { 
         path: '/cart',
         element: <Cart />,
-        // loader: homeLoader,
+      },
+      { 
+        path: 'completedOrder',
+        element: <CompletedOrder />,
       },
       {
         path: '*',

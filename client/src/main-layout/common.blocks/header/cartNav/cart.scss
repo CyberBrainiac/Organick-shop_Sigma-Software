@@ -16,6 +16,20 @@
 		margin-right: 12px;
 		margin-left: 6px;
 		border-color: transparent;
+		border: none;
+	}
+
+	button.cartNav__btn {
+		&:hover {
+			background-color: transparent;
+		}
+		&:active {
+			border: none;
+			transform: scale(0.9);
+		}
+		&:focus-visible {
+			border: none;
+		}
 	}
 
 	&__name {

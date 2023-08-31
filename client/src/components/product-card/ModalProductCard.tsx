@@ -8,7 +8,7 @@ import { useProduct } from "../contexts/CartProvider"
 
 const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
   const {
-    categories, imgUrl, name, price, discount, stars, 
+    idProduct, categories, imgUrl, name, price, discount, stars, 
     shortDescription, productDescription, additionalInfo,
   } = props.product;
 
@@ -58,7 +58,7 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
 
   /**Providers*/
   const { addProdVal } = useCount();
-  const { saveProduct } = useProduct();
+  const { addProduct } = useProduct();
 
   function provideQuantity() {
     const buttonCover = document.querySelector(".modal-product__btn-to-shop_cover") as HTMLDivElement;
@@ -79,7 +79,8 @@ const ModalProductCard: React.FC<ModalProductCardProps> = (props) => {
   }
 
   function provideProduct() {
-    saveProduct({
+    addProduct({
+      idProduct: idProduct,
       quantity: productCount, 
       product: props.product
     });

@@ -1,9 +1,9 @@
 import axios from "axios";
-import { loadersErrorHandler } from "./loadersErrorHandler";
+import { loadersErrorHandler } from "../errorHandlers/loadersErrorHandler";
 import { ProductType } from "@/types/main-types";
 
 export async function allProductsLoader() {
-	const apiUrl = "http://localhost:3000/products";
+	const apiUrl = "http://localhost:3200/products";
 	let response;
 	
 	try {
@@ -14,23 +14,23 @@ export async function allProductsLoader() {
 	const products = response?.data as ProductType[];
 
 	/**Set products to Session storage*/
-	if(!sessionStorage.getItem("selectedProducts")) {
-		sessionStorage.setItem("selectedProducts", "[]");
+	if(!sessionStorage.getItem("loadedProducts")) {
+		sessionStorage.setItem("loadedProducts", "[]");
 	}
 	
-	sessionStorage.setItem("selectedProducts", JSON.stringify(products));
+	sessionStorage.setItem("loadedProducts", JSON.stringify(products));
 
 	return { products };
 }
 
 export async function productLoader(id: number) {
-	const apiUrl = "http://localhost:3000/products";
+	const apiUrl = "http://localhost:3200/products";
 	let response;
 
 	/**Get saved product from session storage*/
-	const rawSelectedProducts: string = sessionStorage.getItem("selectedProducts")!;
-	const selectedProducts: ProductType[] = JSON.parse(rawSelectedProducts);
-	const targetProduct = selectedProducts.find(product => product.idProduct === id);
+	const rawloadedProducts: string = sessionStorage.getItem("loadedProducts")!;
+	const loadedProducts: ProductType[] = JSON.parse(rawloadedProducts);
+	const targetProduct = loadedProducts.find(product => product.idProduct === id);
 
 	if(targetProduct) {
 		return targetProduct;

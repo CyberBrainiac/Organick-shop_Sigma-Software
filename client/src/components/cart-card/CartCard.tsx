@@ -1,10 +1,37 @@
 import "./cartCard.scss"
 import { Button } from "../buttons/buttons";
 import { CardProductProps } from "@/types/main-types";
+import { useState } from "react";
 
 const CartCard: React.FC<CardProductProps> = (props) => {
-  const {quantity, product, onClose} = props
-  const {imgUrl, name, price, discount} = product;
+  const {quantity, product, onDelete, onUpdateInpt} = props
+  const {idProduct, imgUrl, name, price, discount} = product;
+  const [quantityProd, setQuantityProd] = useState(quantity);
+  const [isValidQuantity, changeIsValidQuantity] = useState(quantity > 0);
+
+  function handleClose() {
+    onDelete(product.idProduct);
+  }
+
+  function handleInptChange(event: React.ChangeEvent<HTMLInputElement>) {
+    let newQuantity = Number(event.target.value);
+    if (event.target.value === '') {
+      newQuantity = 1;
+    }
+    
+    setQuantityProd(newQuantity);
+
+    if(newQuantity > 0) {
+      changeIsValidQuantity(true);
+      onUpdateInpt(idProduct, newQuantity);
+
+    } else if (newQuantity === 0) {
+      onDelete(product.idProduct);
+
+    } else {
+      changeIsValidQuantity(false);
+    }
+  }
 
   return(
     <div className="cart-card">
@@ -28,10 +55,11 @@ const CartCard: React.FC<CardProductProps> = (props) => {
           <input
             className="cart-card__inpt"
             type="number"
-            value={quantity}
-            disabled
+            value={quantityProd}
+            onChange={handleInptChange}
+            style={{ borderColor: isValidQuantity ? 'initial' : '#ff0000' }}
           />
-          <Button className="cart-card__btn-close" text="X" onClick={props.onClose} />
+          <Button className="cart-card__btn-close" text="X" onClick={handleClose} />
         </div>
     </div>
   );

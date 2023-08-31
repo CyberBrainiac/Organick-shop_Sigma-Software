@@ -1,21 +1,80 @@
 import "./cart.scss"
-import { ButtonCommon, ButtonLink } from "@/components/buttons/buttons"
+import { ButtonLink } from "@/components/buttons/buttons"
 import CartCard from "@/components/cart-card/CartCard";
 import { useProduct } from "@/components/contexts/CartProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useCount } from "@/components/contexts/CounterProvider";
+import FormOrder from "@/components/form/FormOrder";
 
 const Cart: React.FC = () => {
+  const { getProducts, modifyProduct } = useProduct();
+  const {	addProdVal, removeProdVal, setProdVal} = useCount();
   const [isFormDisplay, setFormDisplay] = useState(false);
-  const { getProducts } = useProduct();
   const isEmptyProducts = !getProducts.length;
-  
+  const [renderProdutcs, setRenderProducts] = useState(getProducts);
+  const [totalDiscount, setTotalDiscount] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
+
+  /**Synchronize changes between renderProducts state and getProducts state*/
+  useEffect(() => {
+    setRenderProducts(getProducts);
+  }, [getProducts]);
+
   function showForm() {
     setFormDisplay(true);
   }
 
-  function onClose() {
+  function onDelete(idProduct: number) {
+    const action = "delete";
 
+    /**Update quantity of all products*/
+    const deletedProduct = renderProdutcs.find((product) => product.idProduct === idProduct)!;
+    removeProdVal(deletedProduct.quantity);
+
+    /**Update provider state*/
+    modifyProduct({action, idProduct});
   }
+
+  // const [productCount, setProductCount] = useState(0);
+  useEffect(() => {
+    const productCount = getProducts.reduce((count, product) => {
+      return count + product.quantity;
+    }, 0);
+
+    setProdVal(productCount);
+  } ,[getProducts]);
+
+  function onUpdateInpt(idProduct: number, newQuantity: number) {
+    const action = "update count";
+    const modifiedProduct = renderProdutcs.find(product => product.idProduct === idProduct)!;
+    const quantityDifference = newQuantity - modifiedProduct.quantity;
+
+    /**Update quantity of all products*/
+    (quantityDifference === 0) ? null : 
+    (quantityDifference > 0) ? addProdVal(quantityDifference) : removeProdVal( Math.abs(quantityDifference));
+
+    /**Update provider state*/
+    modifyProduct({action, idProduct, quantityDifference});
+  }
+
+  /**Calc Cost, Discount*/
+  useEffect(() => {
+    const totalDiscount = renderProdutcs.reduce((sumDiscount, savedProduct) => {
+      if(savedProduct.product.discount) {
+        return sumDiscount + (savedProduct.product.discount) * savedProduct.quantity;
+      } else {
+        return sumDiscount;
+      }
+    }, 0);
+
+    const totalPrice = renderProdutcs.reduce((sumCost, savedProduct) => {
+      return sumCost + (savedProduct.product.price) * savedProduct.quantity;
+    }, 0);
+    const totalCost = totalPrice - totalDiscount;
+
+    setTotalDiscount(totalDiscount);
+    setTotalCost(totalCost);
+  }, [renderProdutcs]);
 
   return <section className="cart">
     <div className="cart__decore">
@@ -29,17 +88,26 @@ const Cart: React.FC = () => {
     <div className="cart__wrap">
       {(isEmptyProducts) ? 
         <div className="cart_empty"><h2>Your cart is empty</h2></div> :
-        getProducts.map(({idProduct, quantity, product}) => {
+        renderProdutcs.map(({idProduct, quantity, product}) => {
           return <CartCard
             key={idProduct}
             quantity={quantity}
             product={product}
-            onClose={onClose}
+            onDelete={onDelete}
+            onUpdateInpt={onUpdateInpt}
           />
-        })
-      }
+        })}
 
-      {(isFormDisplay && getProducts.length) ? <div>SHOW FORM</div> : null}
+      <div className="cart__sum-info">
+        <div className="cart__sum-info_container">
+          <h3>Total Cost{" "}</h3>
+          <h3>{totalCost}</h3>
+          <h3>Discount{" "}</h3>
+          <h3>{totalDiscount}</h3>
+        </div>
+      </div>
+
+      {(isFormDisplay && getProducts.length) ? <FormOrder /> : null}
       {!isFormDisplay && 
         <ButtonLink 
           className="cart__btn-order" 
@@ -48,7 +116,6 @@ const Cart: React.FC = () => {
           href="#" 
         />
       }
-      {isFormDisplay && <ButtonCommon className="cart__btn-confirm" text="Confirm" href="/completedOrder" />}
     </div>
   </section>
 }

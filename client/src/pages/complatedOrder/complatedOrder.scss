@@ -1,0 +1,13 @@
+@import "/src/assets/styles/mixins";
+
+.complatedOrder {
+  width: 100%;
+  padding-top: 95px;
+  text-align: center;
+
+  &__img {
+    @include backgr-img("/src/assets/images/Complated-Order-Bg.png");
+    margin-top: 45px;
+    height: 450px;
+  }
+}
