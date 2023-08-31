@@ -12,7 +12,6 @@ const postOrders = asyncHandler(async (req: Request, res: Response) => {
     const DB = await createConnection();
     const {userInfo, orderProducts} = req.body;
     const {name, email, address, phoneNumber, message} = userInfo;
-    const { idProduct, quantity } = orderProducts;
     
     let newUserId;
     let newOrderId;
@@ -41,11 +40,10 @@ const postOrders = asyncHandler(async (req: Request, res: Response) => {
     try {
       DB.beginTransaction();
       const query =
-        'INSERT INTO orders (idUser, message) VALUES (?)';
+        'INSERT INTO orders (idUser, message) VALUES (?, ?)';
       const values = [newUserId, message];
       const [result] = await DB.query<ResultSetHeader>(query, values);
       newOrderId = result.insertId;
-      console.log(newOrderId);
       
       await DB.commit();
 
@@ -61,11 +59,14 @@ const postOrders = asyncHandler(async (req: Request, res: Response) => {
     /**Set Order and Product*/
     try {
       DB.beginTransaction();
-      const query =
-        'INSERT INTO order_product (idOrder, idProduct, productCount) VALUES (?, ?, ?)';
-      const values = [newOrderId, idProduct, quantity];
-      const [result] = await DB.query<ResultSetHeader>(query, values);
-      console.log("Order_product ID:", result.insertId);
+
+      for(const product of orderProducts) {
+        const query = 'INSERT INTO order_product (idOrder, idProduct, productCount) VALUES (?, ?, ?)';
+        const {idProduct, quantity} = product;
+
+        const values = [newOrderId, idProduct, quantity];
+        const [result] = await DB.query<ResultSetHeader>(query, values);
+      }
       
       await DB.commit();
 

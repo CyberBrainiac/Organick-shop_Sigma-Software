@@ -7,13 +7,15 @@ const Offer: React.FC = () => {
   const [showingProductArr, setShowingProductArr] = useState<JSX.Element[]>([]);
   
   useEffect(() => {
-    const showingProductId = [13, 14, 15, 16];
+    /**WRITE Last 4 loaded products*/
+    const showingProductId = [29, 30, 31, 32];
     (async () => {
       const loadedProduct = await Promise.all( showingProductId.map(id => productLoader(id)));
       setShowingProductArr(loadedProduct.map((product) => {
         return(<ProductCard key={product.idProduct} product={product} />);
       }))
     })();
+
   },[]);
 
   return(

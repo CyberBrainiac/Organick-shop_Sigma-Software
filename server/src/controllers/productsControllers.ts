@@ -38,6 +38,8 @@ const getProducts = asyncHandler(async (req: Request, res: Response) => {
         idProduct = ${id};
       `);
       product = rows as RowDataPacket[];
+      console.log(product);
+      
     } catch (error) {
       console.error('Error fetching data:', error);
       res.status(500).json({ error: `Error retrieving product: ${id}` });
