@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
 import { createConnection } from '../dataBase/dbConfig';
 import { RowDataPacket } from 'mysql2';
-import express, { Request, Response} from 'express';
+import { Request, Response} from 'express';
 
 const getProducts = asyncHandler(async (req: Request, res: Response) => {
   const { id } = req.query;

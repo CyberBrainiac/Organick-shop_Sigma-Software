@@ -4,6 +4,7 @@ import cors from 'cors';
 import corsOptions from './cors/corsOptions';
 import routerProducts from './routes/prooductsRoute';
 import authenticate from './middleware/authenticate';
+import routerOrders from './routes/ordersRoute';
 
 const app = express();
 const PORT = 3200;
@@ -11,6 +12,7 @@ const PORT = 3200;
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/products', routerProducts);
+app.use('/orders', routerOrders);
 
 app.get("/", authenticate, asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   console.log("root");
