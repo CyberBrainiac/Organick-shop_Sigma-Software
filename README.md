@@ -1,4 +1,5 @@
 # Project Description:
+***Video description: https://drive.google.com/file/d/12pp_b5ACKGjZsDvhyOW830cz4UFmdDcr/view?usp=drive_link***
 * Technology stack: `Typescript`, `Scss`;
 * Database: `My SQL`;
 * Build tool and development server: `Vite`;
